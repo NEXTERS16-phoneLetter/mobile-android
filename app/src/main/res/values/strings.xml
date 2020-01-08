@@ -1,0 +1,3 @@
+<resources>
+    <string name="sys_backpress_msg">뒤로가기를 연속으로 2번 누르시면 앱을 종료합니다.</string>
+</resources>
