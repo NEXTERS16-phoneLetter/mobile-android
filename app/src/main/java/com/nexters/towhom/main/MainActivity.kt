@@ -1,4 +1,4 @@
-package com.nexters.towhom.mainactivity
+package com.nexters.towhom.main
 
 import android.os.Bundle
 import com.nexters.towhom.R

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.nexters.towhom.login.LoginViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/temp_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Login Activity"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/id_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:text="ID "
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="@id/id_edit"
+            app:layout_constraintEnd_toStartOf="@id/id_edit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/id_edit" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/id_edit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:hint="@string/str_id"
+            android:text="@={viewModel.idLiveData}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_min="50dp"
+            app:layout_constraintStart_toEndOf="@id/id_text"
+            app:layout_constraintTop_toBottomOf="@id/temp_text" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/id_clear_btn"
+            style="@style/textClearImageButtonStyle"
+            android:background="#000"
+            android:onClick='@{() ->viewModel.clearEditText("idClear")}'
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/id_edit"
+            app:layout_constraintEnd_toEndOf="@id/id_edit"
+            app:layout_constraintTop_toTopOf="@id/id_edit"
+            app:srcCompat="@drawable/abc_vector_test"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/pw_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="15dp"
+            android:text="PW "
+            android:textColor="#000"
+            app:layout_constraintBottom_toBottomOf="@id/pw_edit"
+            app:layout_constraintEnd_toStartOf="@id/pw_edit"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/pw_edit" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/pw_edit"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="15dp"
+            android:inputType="textPassword"
+            android:hint="@string/str_pw"
+            android:text="@={viewModel.pwLiveData}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_min="50dp"
+            app:layout_constraintStart_toStartOf="@id/id_edit"
+            app:layout_constraintTop_toBottomOf="@id/id_edit" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/pw_clear_btn"
+            style="@style/textClearImageButtonStyle"
+            android:background="#000"
+            android:onClick='@{() ->viewModel.clearEditText("pwClear")}'
+            android:visibility="gone"
+
+            app:layout_constraintBottom_toBottomOf="@id/pw_edit"
+            app:layout_constraintEnd_toEndOf="@id/pw_edit"
+            app:layout_constraintTop_toTopOf="@id/pw_edit"
+            app:srcCompat="@drawable/abc_vector_test"
+            tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/wrong_msg_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/layout_8"
+            android:layout_marginTop="@dimen/layout_8"
+            android:ems="10"
+            android:textColor="@color/colorWrongRed"
+            android:visibility="gone"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pw_edit"
+            tools:text="@string/str_wrong_id_pw" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/id_auto_cb"
+            style="@style/loginCheckBox"
+            android:layout_marginStart="@dimen/layout_4"
+            android:text="@string/str_login_save_id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/wrong_msg_tv"
+            tools:ignore="SpUsage" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/login_auto_cb"
+            style="@style/loginCheckBox"
+            android:layout_marginStart="@dimen/layout_24"
+            android:text="@string/str_login_auth"
+            app:layout_constraintStart_toEndOf="@id/id_auto_cb"
+            app:layout_constraintTop_toBottomOf="@id/wrong_msg_tv"
+            tools:ignore="SpUsage" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/selector_login_btn"
+            android:enabled="false"
+            android:minHeight="54dp"
+            android:onClick='@{() ->viewModel.tryLogin()}'
+            android:text="@string/str_login"
+            android:textColor="@color/colorWhite"
+            android:textSize="@dimen/text_14"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/id_auto_cb" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

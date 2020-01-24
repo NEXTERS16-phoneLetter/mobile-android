@@ -19,6 +19,8 @@ abstract class BindingActivity<T : ViewDataBinding> : AppCompatActivity() {
     protected lateinit var binding: T
         private set
 
+
+
     /** SharedPreference 변수 */
     var pref: SharedPreferences? = null
     /** 뒤로가기 눌렀을 때, 인터벌(default : 2초) */

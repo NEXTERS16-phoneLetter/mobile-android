@@ -1,3 +1,14 @@
 <resources>
     <string name="sys_backpress_msg">뒤로가기를 연속으로 2번 누르시면 앱을 종료합니다.</string>
+    <string name="notice_permission_need">권한을 먼저 허용해주세요.</string>
+
+    <string name="str_wrong_id_pw">아이디와 비밀번호가 일치하지 않습니다.\n 확인 후 다시 입력해주세요.</string>
+    <string name="str_login_save_id">아이디 저장</string>
+    <string name="str_login_auth">자동 로그인</string>
+    <string name="str_login">로그인</string>
+    <string name="str_id">아이디</string>
+    <string name="str_pw">비밀번호</string>
+    <string name="str_wrong_user_per">카카오톡 가입이 되어있는 사용자 입니다.</string>
+    <string name="str_wrong_user_permission">권한이 없습니다. 다시 시도해주세요.</string>
+    <string name="str_network_fail">네트워크가 원할하지 않습니다. 다시확인해주세요</string>
 </resources>
