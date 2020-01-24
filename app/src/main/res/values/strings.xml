@@ -1,4 +1,5 @@
 <resources>
+    <string name="kakao_app_key">ca607bfde643f9229e62df0f3498eb7f</string>
     <string name="sys_backpress_msg">뒤로가기를 연속으로 2번 누르시면 앱을 종료합니다.</string>
     <string name="notice_permission_need">권한을 먼저 허용해주세요.</string>
 

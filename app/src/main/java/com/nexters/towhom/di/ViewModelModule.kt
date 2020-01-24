@@ -1,6 +1,7 @@
 package com.nexters.towhom.di
 
 import com.nexters.towhom.login.LoginViewModel
+import com.nexters.towhom.login.SimpleLoginViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -11,5 +12,6 @@ import org.koin.dsl.module
  * */
 val viewModelModule = module {
     viewModel { LoginViewModel() }
+    viewModel { SimpleLoginViewModel() }
     // viewModel { MainViewModel() }
 }

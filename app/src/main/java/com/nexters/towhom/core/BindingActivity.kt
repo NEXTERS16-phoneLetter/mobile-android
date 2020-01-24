@@ -39,7 +39,8 @@ abstract class BindingActivity<T : ViewDataBinding> : AppCompatActivity() {
         val intervalTime = tempTime - BACKPRESSED_TIME
 
         if (intervalTime in 0..FINISH_INTERVAL_TIME) {
-            ActivityCompat.finishAffinity(this)
+            this.finish()
+//            ActivityCompat.finishAffinity(this)
         } else {
             BACKPRESSED_TIME = tempTime
             Toast.makeText(this, resources.getString(R.string.sys_backpress_msg), Toast.LENGTH_SHORT).show()
