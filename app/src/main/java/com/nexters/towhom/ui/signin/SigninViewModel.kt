@@ -1,11 +1,12 @@
-package com.nexters.towhom.login
+package com.nexters.towhom.ui.signin
 
 import androidx.lifecycle.MutableLiveData
 import com.nexters.towhom.core.BaseViewModel
+import com.nexters.towhom.ui.login.LoginHomeModel
 import com.nexters.towhom.vo.TEST_LoginParams
 import com.nexters.towhom.vo.TEST_LoginReturn
 
-class LoginViewModel : BaseViewModel() {
+class SigninViewModel : BaseViewModel() {
 
     private val _idLiveData: MutableLiveData<String> = MutableLiveData()
     val idLiveData: MutableLiveData<String>
@@ -32,7 +33,7 @@ class LoginViewModel : BaseViewModel() {
     // W = wrongID, N = notPermission, E = networkError, S = success
     fun tryLogin() {
         /** TestCode */
-        val response = LoginModel().callNetwork(
+        val response = LoginHomeModel().callNetwork(
             TEST_LoginParams(
                 _idLiveData.value.toString(),
                 _pwLiveData.value.toString()

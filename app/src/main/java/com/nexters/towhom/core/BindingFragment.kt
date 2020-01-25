@@ -1,6 +1,7 @@
 package com.nexters.towhom.core
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,6 +27,21 @@ abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
         return DataBindingUtil.inflate<T>(inflater, getLayoutResId(), container, false).apply { binding = this }.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        bindingView()
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+        bindingEventListener()
+        bindingObserver()
+    }
+
+    abstract fun bindingView()
     abstract fun bindingEventListener()
     abstract fun bindingObserver()
+
 }

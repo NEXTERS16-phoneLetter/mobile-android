@@ -9,7 +9,6 @@ import android.util.Base64
 import android.util.Log
 import com.nexters.towhom.core.BindingActivity
 import com.nexters.towhom.databinding.ActivitySplashBinding
-import com.nexters.towhom.login.SimpleLoginActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -31,14 +30,14 @@ class SplashActivity : BindingActivity<ActivitySplashBinding>() {
 
         CoroutineScope(Dispatchers.Main).launch {
             delay(SPLASH_TIME)
-            moveToSimpleLoginActivity()
+            moveToLoginMainActivity()
         }
 
 
     }
 
-    fun moveToSimpleLoginActivity() {
-        startActivity(Intent(this@SplashActivity, SimpleLoginActivity::class.java))
+    fun moveToLoginMainActivity() {
+        startActivity(Intent(this@SplashActivity, MainActivity::class.java))
         finish()
 
     }

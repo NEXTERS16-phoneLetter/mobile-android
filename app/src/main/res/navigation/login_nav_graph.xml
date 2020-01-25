@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_nav_graph"
+    app:startDestination="@+id/login">
+
+    <!-- Login Logic -->
+    <fragment
+        android:id="@+id/login"
+        android:name="com.nexters.towhom.ui.login.LoginHomeFragment"
+        android:label="간편로그인"
+        tools:layout="@layout/fragment_login_home">
+        <action
+            android:id="@+id/action_login_home_to_signin"
+            app:destination="@id/signup" />
+        <action
+            android:id="@+id/action_login_home_to_app_login"
+            app:destination="@id/signin" />
+        <!-- 카카오 간편 로그인시 사용 -->
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/home" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signup"
+        android:name="com.nexters.towhom.ui.signup.SignupFragment"
+        android:label="회원가입"
+        tools:layout="@layout/fragment_signup">
+        <!-- 이 액션은 회원가입 완료시 사용할 것 -->
+        <action
+            android:id="@+id/action_signup_to_login"
+            app:popUpTo="@id/signup"
+            app:popUpToInclusive="true"
+            app:destination="@id/login" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/signin"
+        android:name="com.nexters.towhom.ui.signin.SigninFragment"
+        android:label="로그"
+        tools:layout="@layout/fragment_signin" >
+        <action
+            android:id="@+id/action_app_signin_to_home"
+            app:popUpTo="@id/login"
+            app:popUpToInclusive="true"
+            app:destination="@id/home" />
+    </fragment>
+
+    <!-- Home Main -->
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.nexters.towhom.ui.home.HomeFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_home"/>
+
+</navigation>

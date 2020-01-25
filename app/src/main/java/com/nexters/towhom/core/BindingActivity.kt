@@ -34,7 +34,7 @@ abstract class BindingActivity<T : ViewDataBinding> : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, getLayoutResId())
     }
 
-    override fun onBackPressed() {
+  /*  override fun onBackPressed() {
         val tempTime = System.currentTimeMillis()
         val intervalTime = tempTime - BACKPRESSED_TIME
 
@@ -45,5 +45,5 @@ abstract class BindingActivity<T : ViewDataBinding> : AppCompatActivity() {
             BACKPRESSED_TIME = tempTime
             Toast.makeText(this, resources.getString(R.string.sys_backpress_msg), Toast.LENGTH_SHORT).show()
         }
-    }
+    }*/
 }

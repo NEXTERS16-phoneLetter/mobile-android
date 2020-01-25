@@ -24,19 +24,8 @@
             </intent-filter>
         </activity>
 
-        <activity
-            android:name=".main.MainActivity"
-            android:screenOrientation="portrait" />
-
-
-        <activity
-            android:name=".login.SimpleLoginActivity"
-            android:screenOrientation="portrait" />
-
-        <activity
-            android:name=".login.LoginActivity"
-            android:screenOrientation="portrait" />
-
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

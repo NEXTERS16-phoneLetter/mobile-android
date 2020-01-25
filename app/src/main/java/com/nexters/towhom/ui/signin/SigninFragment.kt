@@ -1,20 +1,19 @@
-package com.nexters.towhom.login
+package com.nexters.towhom.ui.signin
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.nexters.towhom.R
-import com.nexters.towhom.core.BindingActivity
-import com.nexters.towhom.databinding.ActivityLoginBinding
-import com.nexters.towhom.main.MainActivity
+import com.nexters.towhom.core.BindingFragment
+import com.nexters.towhom.databinding.FragmentSigninBinding
 import com.nexters.towhom.vo.CommonData
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class LoginActivity : BindingActivity<ActivityLoginBinding>() {
-    override fun getLayoutResId(): Int = R.layout.activity_login
+class SigninFragment : BindingFragment<FragmentSigninBinding>() {
+    override fun getLayoutResId(): Int = R.layout.fragment_signin
 
     private val vm by lazy { binding.viewModel!! }
     private val idEdit by lazy { binding.idEdit }
@@ -24,29 +23,33 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>() {
     private val wrongTv by lazy { binding.wrongMsgTv }
     private val loginBtn by lazy { binding.loginBtn }
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
         binding.viewModel = getViewModel()
         binding.lifecycleOwner = this
+    }
 
-        vm.idLiveData.observe(this, Observer {
+    override fun bindingEventListener() {
+
+    }
+
+    override fun bindingObserver() {
+        vm.idLiveData.observe(viewLifecycleOwner, Observer {
             isTextEmpty(binding.idClearBtn, it)
             checkAndUpdateLoginBtnEnabled()
             setWrongMessageHide()
         })
 
-        vm.pwLiveData.observe(this, Observer {
+        vm.pwLiveData.observe(viewLifecycleOwner, Observer {
             isTextEmpty(binding.pwClearBtn, it)
             checkAndUpdateLoginBtnEnabled()
             setWrongMessageHide()
         })
 
-        vm.loginCheckListData.observe(this, Observer {
+        vm.loginCheckListData.observe(viewLifecycleOwner, Observer {
             updateAccordingNetworkResult(it.result)
         })
-
     }
 
 
@@ -58,7 +61,7 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>() {
             "E" -> setMsgAndShow(resources.getString(R.string.str_network_fail))
             "S" -> {
                 setCommonDataUserInfo()
-                moveToMainActity()
+                findNavController().navigate(R.id.action_app_signin_to_home)
             }
         }
     }
@@ -70,12 +73,6 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>() {
             text = msg
         }
     }
-
-    private fun moveToMainActity() {
-        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-        finish()
-    }
-
 
     private fun setCommonDataUserInfo() {
         CommonData.USERID = idEdit.text.toString()
@@ -95,4 +92,10 @@ class LoginActivity : BindingActivity<ActivityLoginBinding>() {
         if (text.isNotEmpty()) view.visibility = View.VISIBLE
         else view.visibility = View.GONE
     }
+
+    override fun bindingView() {
+
+    }
+
+
 }

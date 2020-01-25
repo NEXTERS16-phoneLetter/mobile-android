@@ -1,9 +1,9 @@
-package com.nexters.towhom.login
+package com.nexters.towhom.ui.login
 
 import com.nexters.towhom.vo.TEST_LoginParams
 import com.nexters.towhom.vo.TEST_LoginReturn
 
-class LoginModel {
+class LoginHomeModel {
 
     // TODO: LOGIN INTERFACE로 변경
     // W = wrongID, N = notPermission, E = networkError, S = success
