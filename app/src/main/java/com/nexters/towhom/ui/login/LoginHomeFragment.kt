@@ -139,7 +139,7 @@ class LoginHomeFragment : BindingFragment<FragmentLoginHomeBinding>() {
     }
 
     override fun bindingView() {
-        appLoginBtn = binding.appLoginBtn
+        appLoginBtn = binding.appLoginBtn // view!!.findViewById<AppCompatButton>(R.id.app_login_btn)
         signInBtn = binding.signInBtn
 
     }

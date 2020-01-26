@@ -36,6 +36,7 @@ abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        bindingView()
         bindingEventListener()
         bindingObserver()
     }
