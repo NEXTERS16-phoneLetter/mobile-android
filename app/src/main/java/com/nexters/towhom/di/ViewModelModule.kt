@@ -1,7 +1,9 @@
 package com.nexters.towhom.di
 
+import com.nexters.towhom.ui.home.HomeViewModel
 import com.nexters.towhom.ui.signin.SigninViewModel
 import com.nexters.towhom.ui.login.LoginHomeViewModel
+import com.nexters.towhom.ui.write.WriteViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -13,5 +15,7 @@ import org.koin.dsl.module
 val viewModelModule = module {
     viewModel { SigninViewModel() }
     viewModel { LoginHomeViewModel() }
+    viewModel { HomeViewModel() }
+    viewModel { WriteViewModel() }
     // viewModel { MainViewModel() }
 }

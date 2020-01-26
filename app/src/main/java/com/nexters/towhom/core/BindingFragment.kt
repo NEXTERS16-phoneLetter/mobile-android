@@ -40,8 +40,11 @@ abstract class BindingFragment<T : ViewDataBinding> : Fragment() {
         bindingObserver()
     }
 
+    /** findViewById 와 같은 기능 묶어놓는 메서드 */
     abstract fun bindingView()
+    /** setOnClickListener 와 같은 Event Listener 묶어놓는 메서드 */
     abstract fun bindingEventListener()
+    /** LiveData Observer Pattern 묶어놓는 메서드*/
     abstract fun bindingObserver()
 
 }

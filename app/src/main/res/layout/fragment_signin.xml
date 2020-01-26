@@ -55,11 +55,11 @@
             style="@style/textClearImageButtonStyle"
             android:background="#000"
             android:onClick='@{() ->viewModel.clearEditText("idClear")}'
+            android:src="@drawable/abc_vector_test"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/id_edit"
             app:layout_constraintEnd_toEndOf="@id/id_edit"
             app:layout_constraintTop_toTopOf="@id/id_edit"
-            app:srcCompat="@drawable/abc_vector_test"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -79,8 +79,8 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="15dp"
-            android:inputType="textPassword"
             android:hint="@string/str_pw"
+            android:inputType="textPassword"
             android:text="@={viewModel.pwLiveData}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_min="50dp"
@@ -92,12 +92,12 @@
             style="@style/textClearImageButtonStyle"
             android:background="#000"
             android:onClick='@{() ->viewModel.clearEditText("pwClear")}'
-            android:visibility="gone"
+            android:src="@drawable/abc_vector_test"
 
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/pw_edit"
             app:layout_constraintEnd_toEndOf="@id/pw_edit"
             app:layout_constraintTop_toTopOf="@id/pw_edit"
-            app:srcCompat="@drawable/abc_vector_test"
             tools:visibility="visible" />
 
         <androidx.appcompat.widget.AppCompatTextView
@@ -141,7 +141,7 @@
             android:minHeight="54dp"
             android:onClick='@{() ->viewModel.tryLogin()}'
             android:text="@string/str_login"
-            android:textColor="@color/colorWhite"
+            android:textColor="@color/white"
             android:textSize="@dimen/text_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

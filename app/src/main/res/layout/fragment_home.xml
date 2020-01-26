@@ -15,14 +15,51 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/write_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/layout_24"
+            android:layout_marginTop="@dimen/layout_24"
+            android:layout_marginEnd="@dimen/layout_24"
+            android:layout_marginBottom="@dimen/layout_24"
+            android:background="@color/bg_login_button_highlighted"
+            app:layout_constraintBottom_toTopOf="@id/user_profile_linear"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/user_profile_linear"
+            android:layout_width="wrap_content"
+            android:layout_marginEnd="@dimen/layout_24"
+            android:layout_height="56dp"
+            android:layout_marginBottom="@dimen/layout_24"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:letterSpacing="-0.01"
+                android:lineSpacingExtra="32dp"
+                android:text="From. Guest1"
+                android:textColor="@color/colorBlack"
+                android:textSize="24dp" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/user_image"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="14dp" />
+
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -15,6 +15,7 @@ import com.kakao.util.exception.KakaoException
 import com.nexters.towhom.R
 import com.nexters.towhom.core.BindingFragment
 import com.nexters.towhom.databinding.FragmentLoginHomeBinding
+import com.nexters.towhom.vo.CommonData
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 
@@ -100,9 +101,11 @@ class LoginHomeFragment : BindingFragment<FragmentLoginHomeBinding>() {
                 }
                 }
                  */
-
-
                 Log.d("onSessionClosed", "success to update profile. msg = $result")
+                if (result != null) {
+                    setUserProfile(result)
+                }
+
                 findNavController().navigate(R.id.action_login_to_home)
             }
 
@@ -112,6 +115,15 @@ class LoginHomeFragment : BindingFragment<FragmentLoginHomeBinding>() {
             }
 
         })
+    }
+
+    private fun setUserProfile(result: MeV2Response) {
+        CommonData.USERID = result.id.toString() // kakao에서 제공해주는 고유값 임
+        CommonData.USER_NAME = result.properties["nickname"] ?: "Empty Name" //TODO : EMPTY NAME 에서 "" 로 바꿔야 할지 고민필요
+        CommonData.USER_IMAGE_URL =
+            result.properties["thumbnail_image"] ?: "" // 110x 110 jpg  TODO: Default Image URL로 변경 요망
+
+
     }
 
     inner class SessionStatusCallback : ISessionCallback {
@@ -145,7 +157,6 @@ class LoginHomeFragment : BindingFragment<FragmentLoginHomeBinding>() {
     override fun bindingObserver() {
 
     }
-
 
 
 }
