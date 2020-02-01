@@ -10,4 +10,6 @@
     <color name="colorWrongRed">#ff3131</color>
     <color name="colorText">#666666</color>
     <color name="colorDisable">#dddddd</color>
+
+    <color name="lightish_red">#ff2e48</color>
 </resources>
