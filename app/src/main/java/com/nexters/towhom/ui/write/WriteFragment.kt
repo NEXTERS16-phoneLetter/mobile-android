@@ -1,12 +1,15 @@
 package com.nexters.towhom.ui.write
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2
 import com.nexters.towhom.R
 import com.nexters.towhom.core.BindingFragment
 import com.nexters.towhom.databinding.FragmentWriteBinding
+import kotlinx.android.synthetic.main.sticker.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class WriteFragment : BindingFragment<FragmentWriteBinding>() {
@@ -18,7 +21,6 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
     /**sticker_add**/
     private val mstickerLinear by lazy { binding.stickerLinear }
     private val add_sticker_btn by lazy { binding.stickerBtn }
-    //val stickerImage = LayoutInflater.from(context).inflate(R.layout.sticker,mstickerLinear,false)
 
     /**sticker_drag**/
     private val mainLayout by lazy { binding.mainConstraint }
@@ -45,6 +47,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
     override fun bindingView() {
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun bindingEventListener() {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -66,8 +69,22 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
         }
 
         add_sticker_btn.setOnClickListener {
-           // mstickerLinear.addView(stickerImage)
+            val stickerImage =
+                LayoutInflater.from(context).inflate(R.layout.sticker, mstickerLinear, false)
+
+
+            mstickerLinear.addView(stickerImage)
         }
+        mstickerLinear.setOnTouchListener((View.OnTouchListener { view, motionEvent ->
+
+            if (motionEvent.action == MotionEvent.ACTION_MOVE) {
+
+                view.y = motionEvent.rawY - view.height/2
+                view.x = motionEvent.rawX - view.width/2
+            }
+            true
+
+        }))
 
 
     }

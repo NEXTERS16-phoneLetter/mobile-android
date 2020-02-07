@@ -6,6 +6,7 @@
     <color name="white">#ffffff</color>
     <color name="colorBlack">#000000</color>
 
+    <color name ="splash">#ff6945</color>
 
     <color name="colorWrongRed">#ff3131</color>
     <color name="colorText">#666666</color>
