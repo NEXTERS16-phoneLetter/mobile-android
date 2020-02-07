@@ -13,6 +13,8 @@ class ContentAdapter(private var items: MutableList<String>) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_write_content, parent, false)
         return ContentViewHolder(view)
+
+
     }
 
     override fun getItemCount(): Int = items.size
