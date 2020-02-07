@@ -12,4 +12,7 @@
     <color name="colorDisable">#dddddd</color>
 
     <color name="lightish_red">#ff2e48</color>
+    <color name="color_home">#ff5555</color>
+
+    <color name="login_btn">#ff4545</color>
 </resources>
