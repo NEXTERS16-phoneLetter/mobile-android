@@ -14,17 +14,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/sticker_linear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@id/button_container_linear"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
 
-
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/sticker_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@id/content_indicator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/content_vp"

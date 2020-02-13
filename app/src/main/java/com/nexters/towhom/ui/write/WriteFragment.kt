@@ -9,7 +9,6 @@ import androidx.viewpager2.widget.ViewPager2
 import com.nexters.towhom.R
 import com.nexters.towhom.core.BindingFragment
 import com.nexters.towhom.databinding.FragmentWriteBinding
-import kotlinx.android.synthetic.main.sticker.*
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class WriteFragment : BindingFragment<FragmentWriteBinding>() {
