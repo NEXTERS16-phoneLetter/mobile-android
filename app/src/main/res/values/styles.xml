@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorBlack</item>
         <item name="colorPrimaryDark">@color/white</item>
         <item name="colorAccent">@color/colorAccent</item>
+
     </style>
 
     <style name="textClearImageButtonStyle">
@@ -22,6 +23,7 @@
         <item name="android:paddingStart">@dimen/layout_4</item>
         <item name="android:textColor">@color/colorText</item>
         <item name="android:textSize">@dimen/text_14</item>
+
     </style>
 
 </resources>

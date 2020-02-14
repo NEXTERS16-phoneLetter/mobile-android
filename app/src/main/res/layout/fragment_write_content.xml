@@ -20,12 +20,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:inputType="textMultiLine"
-            android:maxLength="500"
+            android:maxLength="250"
             android:textSize="30dp"
             android:scrollbars="vertical"
             android:hint="@string/str_letter_please"
             android:background="@null"
             />
+
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
