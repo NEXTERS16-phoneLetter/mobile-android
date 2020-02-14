@@ -69,7 +69,7 @@
             <!--android:layout_width="wrap_content"-->
             <!--android:layout_height="wrap_content"-->
             <!--android:layout_marginEnd="15dp"-->
-            <!--android:text="PW "-->
+            <!--android:text_default="PW "-->
             <!--android:textColor="#000" />-->
 
     <androidx.appcompat.widget.AppCompatEditText
@@ -86,7 +86,7 @@
             android:layout_marginLeft="25dp"
     />
 
-    <!--android:text="@={viewModel.pwLiveData}"-->
+    <!--android:text_default="@={viewModel.pwLiveData}"-->
     <!-- 이부분때문에 계속 에러잡힘 -->
 
 

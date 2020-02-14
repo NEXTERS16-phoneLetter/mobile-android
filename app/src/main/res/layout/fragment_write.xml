@@ -14,38 +14,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-            <androidx.appcompat.widget.LinearLayoutCompat
-                android:id="@+id/sticker_linear"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@id/button_container_linear"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/sticker_linear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@id/button_container_linear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/content_vp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/button_container_linear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/content_vp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toTopOf="@id/button_container_linear"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.nexters.towhom.util.CircleIndicator
-                android:id="@+id/content_indicator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/layout_24"
-                app:layout_constraintBottom_toBottomOf="@id/content_vp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+        <com.nexters.towhom.util.CircleIndicator
+            android:id="@+id/content_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/layout_24"
+            app:layout_constraintBottom_toBottomOf="@id/content_vp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
 
-            </com.nexters.towhom.util.CircleIndicator>
+        </com.nexters.towhom.util.CircleIndicator>
 
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/button_container_linear"
@@ -55,17 +54,77 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/test_btn"
-                android:layout_width="wrap_content"
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="add Fragment" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id ="@+id/sticker_btn"
-                android:layout_width="wrap_content"
+                android:layout_weight="268"
+                android:weightSum="5">
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/letter_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/letter_default" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/text_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/text_default" />
+
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/sticker_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/sticker_default" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/add_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/letter_add_default" />
+
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/delete_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:src="@drawable/delete_default" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:text="add stricker"
-                />
+                android:layout_marginEnd="@dimen/layout_24"
+                android:layout_weight="92"
+                android:gravity="right|center_vertical"
+                android:text="250/250"
+                android:textSize="@dimen/text_16" />
+
+
+            <!--   <androidx.appcompat.widget.AppCompatButton
+                   android:id="@+id/test_btn"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:text_default="add Fragment" />
+               <androidx.appcompat.widget.AppCompatButton
+                   android:id ="@+id/sticker_btn"
+                   android:layout_width="wrap_content"
+                   android:layout_height="match_parent"
+                   android:text_default="add stricker"
+                   />-->
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
