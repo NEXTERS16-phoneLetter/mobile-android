@@ -17,8 +17,8 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
     override fun getLayoutResId(): Int = R.layout.fragment_signup
 
     private val vm by lazy { binding.viewModel!! }
+    private val emailInsert by lazy { binding.emailInsert }
     private val pwInsert by lazy { binding.pwInsert }
-    private val pwInsertCheck by lazy { binding.pwInsertCheck }
 
 //    private val wrongTv by lazy { binding.wrongMsgTv }// 존재여부 잘 모르겠
     private val continueBtn by lazy { binding.continueBtn }
@@ -38,14 +38,14 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
     }
 
     override fun bindingObserver() {
-        vm.pwInsertLiveData.observe(viewLifecycleOwner, Observer {
-            isTextEmpty(binding.pwInsertClearBtn, it)
+        vm.emailInsertLiveData.observe(viewLifecycleOwner, Observer {
+            isTextEmpty(binding.emailInsertClearBtn, it)
             checkAndUpdateSignupBtnEnabled()
 //            setWrongMessageHide()
         })
 
-        vm.pwInsertCheckLiveData.observe(viewLifecycleOwner, Observer {
-            isTextEmpty(binding.pwInsertCheckClearBtn, it)
+        vm.pwInsertLiveData.observe(viewLifecycleOwner, Observer {
+            isTextEmpty(binding.pwInsertClearBtn, it)
             checkAndUpdateSignupBtnEnabled()
 //            setWrongMessageHide()
         })
@@ -84,6 +84,7 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
     private fun setCommonDataUserInfo() {
         CommonData.USERID = pwInsert.text.toString()
     }
+    //이 userid는 뭐야? commondata가 뭔지도 모르겠읍니
 
 
 //    private fun setWrongMessageHide() {
@@ -91,7 +92,7 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
 //    }
 
     private fun checkAndUpdateSignupBtnEnabled() {
-        continueBtn.isEnabled = pwInsert.text!!.isNotEmpty() && pwInsert.text!!.isNotEmpty()
+        continueBtn.isEnabled = emailInsert.text!!.isNotEmpty() && pwInsert.text!!.isNotEmpty()
     }
 
 
@@ -99,8 +100,6 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
         if (text.isNotEmpty()) view.visibility = View.VISIBLE
         else view.visibility = View.GONE
     }
-
-
 
     override fun bindingView() {
 

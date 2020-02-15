@@ -17,7 +17,7 @@
 
 
         <TextView
-                android:id="@+id/pw_insert_text"
+                android:id="@+id/email_insert_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -31,20 +31,63 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/pw_insert"
+                android:id="@+id/email_insert"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
                 android:layout_marginTop="24dp"
                 android:background="@drawable/ic_empty_rect"
                 android:hint="@string/str_email_insert"
-                android:text="@={viewModel.pwInsertLiveData}"
+                android:text="@={viewModel.emailInsertLiveData}"
                 android:padding="14dp"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginRight="24dp"
                 app:layout_constraintHeight_min="50dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pw_insert_text" />
+                app:layout_constraintTop_toBottomOf="@id/email_insert_text" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/email_insert_clear_btn"
+                style="@style/textClearImageButtonStyle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="#00ff0000"
+                android:onClick='@{() ->viewModel.clearEditText("emailInsertClear")}'
+                android:src="@drawable/ic_text_delete2x"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/email_insert"
+                app:layout_constraintEnd_toEndOf="@id/email_insert"
+                app:layout_constraintTop_toTopOf="@id/email_insert"
+                tools:visibility="visible" />
+
+        <!--<androidx.appcompat.widget.AppCompatTextView-->
+        <!--android:id="@+id/pw_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="15dp"-->
+        <!--android:text_default="PW "-->
+        <!--android:textColor="#000" />-->
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/pw_insert"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_empty_rect"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="24dp"
+                android:padding="14dp"
+                android:hint="@string/str_password_insert"
+                android:inputType="textPassword"
+                android:text="@={viewModel.pwInsertLiveData}"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="24dp"
+                app:layout_constraintHeight_min="50dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email_insert" />
+
+        <!--android:text_default="@={viewModel.pwLiveData}"-->
+        <!-- 이부분때문에 계속 에러잡힘 -->
+
 
         <androidx.appcompat.widget.AppCompatImageButton
                 android:id="@+id/pw_insert_clear_btn"
@@ -58,49 +101,6 @@
                 app:layout_constraintBottom_toBottomOf="@id/pw_insert"
                 app:layout_constraintEnd_toEndOf="@id/pw_insert"
                 app:layout_constraintTop_toTopOf="@id/pw_insert"
-                tools:visibility="visible" />
-
-        <!--<androidx.appcompat.widget.AppCompatTextView-->
-        <!--android:id="@+id/pw_text"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_marginEnd="15dp"-->
-        <!--android:text_default="PW "-->
-        <!--android:textColor="#000" />-->
-
-        <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/pw_insert_check"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_empty_rect"
-                android:layout_marginLeft="25dp"
-                android:layout_marginTop="24dp"
-                android:padding="14dp"
-                android:hint="@string/str_password_insert"
-                android:inputType="textPassword"
-                android:text="@={viewModel.pwInsertCheckLiveData}"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginRight="24dp"
-                app:layout_constraintHeight_min="50dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/pw_insert" />
-
-        <!--android:text_default="@={viewModel.pwLiveData}"-->
-        <!-- 이부분때문에 계속 에러잡힘 -->
-
-
-        <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/pw_insert_check_clear_btn"
-                style="@style/textClearImageButtonStyle"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="#00ff0000"
-                android:onClick='@{() ->viewModel.clearEditText("pwInsertClearCheck")}'
-                android:src="@drawable/ic_text_delete2x"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/pw_insert_check"
-                app:layout_constraintEnd_toEndOf="@id/pw_insert_check"
-                app:layout_constraintTop_toTopOf="@id/pw_insert_check"
                 tools:visibility="visible" />
 
 

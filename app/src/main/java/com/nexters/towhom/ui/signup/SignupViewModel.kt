@@ -7,13 +7,13 @@ import com.nexters.towhom.vo.TEST_LoginParams
 import com.nexters.towhom.vo.TEST_LoginReturn
 
 class SignupViewModel : BaseViewModel() {
+    private val _emailInsertLiveData: MutableLiveData<String> = MutableLiveData()
+    val emailInsertLiveData: MutableLiveData<String>
+        get() = _emailInsertLiveData
+
     private val _pwInsertLiveData: MutableLiveData<String> = MutableLiveData()
     val pwInsertLiveData: MutableLiveData<String>
         get() = _pwInsertLiveData
-
-    private val _pwInsertCheckLiveData: MutableLiveData<String> = MutableLiveData()
-    val pwInsertCheckLiveData: MutableLiveData<String>
-        get() = _pwInsertCheckLiveData
 
 
     //생각
@@ -24,8 +24,8 @@ class SignupViewModel : BaseViewModel() {
 
     fun clearEditText(clearTarget: String) {
         when (clearTarget) {
+            "emailInsertClear" -> _emailInsertLiveData.value = ""
             "pwInsertClear" -> _pwInsertLiveData.value = ""
-            "pwInsertClearCheck" -> _pwInsertCheckLiveData.value = ""
         }
     }
 
@@ -36,8 +36,8 @@ class SignupViewModel : BaseViewModel() {
         /** TestCode */
         val response = LoginHomeModel().callNetwork(
             TEST_LoginParams(
-                _pwInsertLiveData.value.toString(),
-                _pwInsertCheckLiveData.value.toString()
+                _emailInsertLiveData.value.toString(),
+                _pwInsertLiveData.value.toString()
             )
         )
 
