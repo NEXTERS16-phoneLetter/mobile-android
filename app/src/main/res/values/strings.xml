@@ -16,4 +16,11 @@
     <string name="str_wrong_length_pw">아직 8자리가 되지 않았어요!</string>
     <string name="str_wrong_same_pw">비밀번호가 같지 않아요 :(</string>
     <string name="str_letter_please"> 편지 내용을 입력해주세요</string>
+    <string name="str_email_insert">이메일 주소를 입력해주세요.</string>
+    <string name="str_password_insert">비밀번호를 입력해주세요.</string>
+    <string name="str_phone_please_title">번호인증을 해주세요 :)</string>
+    <string name="str_phone_please_sub">정확한 편지전달을 위해서 필요해요.</string>
+    <string name="str_phone_placeholder_input">(-)없이 번호를 입력해 주세요.</string>
+    <string name="str_phone_placeholder_output">인증번호를 입력해 주세요.</string>
+    <string name="str_signup_success">시작하기</string>
 </resources>
