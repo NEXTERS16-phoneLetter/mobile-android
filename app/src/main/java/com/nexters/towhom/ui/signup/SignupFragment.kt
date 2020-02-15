@@ -71,7 +71,7 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
 //    private fun setMsgAndShow(msg: String) {
 //        wrongTv.apply {
 //            visibility = View.VISIBLE
-//            text = msg
+//            text_default = msg
 //        }
 //    }
 

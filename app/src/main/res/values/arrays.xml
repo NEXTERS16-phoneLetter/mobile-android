@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="default_bottom_btn_array">
+        <item>@drawable/letter_default</item>
+        <item>@drawable/text_default</item>
+        <item>@drawable/sticker_default</item>
+        <item>@drawable/letter_add_default</item>
+        <item>@drawable/delete_default</item>
+    </string-array>
+
+    <string-array name="enable_bottom_btn_array">
+        <item>@drawable/letter_enable</item>
+        <item>@drawable/text_enable</item>
+        <item>@drawable/sticker_enable</item>
+        <item>@drawable/letter_add_enable</item>
+        <item>@drawable/delete_enable</item>
+    </string-array>
+
+
+
+</resources>
