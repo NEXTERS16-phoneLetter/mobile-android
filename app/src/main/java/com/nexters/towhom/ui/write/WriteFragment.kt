@@ -2,6 +2,7 @@ package com.nexters.towhom.ui.write
 
 import android.annotation.SuppressLint
 import android.app.ActionBar
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -126,37 +127,50 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
         letterBtn.setOnClickListener {
             val v = it as AppCompatImageButton
 
-
             // false 일때  == 안보이는 상태
             if(!bottomNaviStatus[0])
             {
-                showBottomNav()
+                showBottomNav("letter")
                 selectedButtonImageChange(it)
+
             } else {
                 hiddenBottomNav()
                 bottomNaviStatus[0] = false
                 v.setImageResource(R.drawable.letter_default)
             }
-
-
-
         }
+
         textBtn.setOnClickListener {
-            selectedButtonImageChange(it)
+            val v = it as AppCompatImageButton
 
+            // false 일때  == 안보이는 상태
+            if(!bottomNaviStatus[1])
+            {
+                showBottomNav("text")
+                selectedButtonImageChange(it)
 
-            val stickerImage =
-                LayoutInflater.from(context).inflate(R.layout.view_bottom_navi, mstickerLinear, false)
-
-
-            mstickerLinear.addView(stickerImage)
-
-
+            } else {
+                hiddenBottomNav()
+                bottomNaviStatus[1] = false
+                v.setImageResource(R.drawable.text_default)
+            }
 
         }
         stickerBtn.setOnClickListener {
+            val v = it as AppCompatImageButton
 
-            selectedButtonImageChange(it)
+            // false 일때  == 안보이는 상태
+            if(!bottomNaviStatus[2])
+            {
+                showBottomNav("sticker")
+                selectedButtonImageChange(it)
+
+            } else {
+                hiddenBottomNav()
+                bottomNaviStatus[2] = false
+                v.setImageResource(R.drawable.sticker_default)
+            }
+
         }
 
         /** Touch Event
@@ -236,10 +250,19 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
     }
 
 
-    fun showBottomNav() {
+    fun showBottomNav(kind: String) {
         bottomNavi.visibility = View.VISIBLE
-        bottomNavi.alpha = 0.7f
+        bottomNavi.updateView(kind)
 
+       /* when(kind) {
+            "letter" -> {
+                bottomNavi.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorBlack))
+                bottomNavi.`
+            }
+            "text" -> {
+                bottomNavi.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorText))
+            }
+        }*/
     }
 
     fun hiddenBottomNav() {
