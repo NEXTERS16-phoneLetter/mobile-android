@@ -24,8 +24,8 @@ class SignupViewModel : BaseViewModel() {
 
     fun clearEditText(clearTarget: String) {
         when (clearTarget) {
-            "pwInsert" -> _pwInsertLiveData.value = ""
-            "pwInsertCheck" -> _pwInsertCheckLiveData.value = ""
+            "pwInsertClear" -> _pwInsertLiveData.value = ""
+            "pwInsertClearCheck" -> _pwInsertCheckLiveData.value = ""
         }
     }
 
