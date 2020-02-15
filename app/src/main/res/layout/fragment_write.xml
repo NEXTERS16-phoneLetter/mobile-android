@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-ㅁ
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/sticker_linear"
             android:layout_width="wrap_content"
@@ -122,9 +121,10 @@
             android:layout_width="match_parent"
             android:layout_height="244dp"
             android:visibility="gone"
-            tools:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:visibility="visible">
+        </com.nexters.towhom.util.BottomNaviView>
 
 
         <!--   <androidx.appcompat.widget.AppCompatButton

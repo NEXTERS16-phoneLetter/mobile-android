@@ -17,6 +17,28 @@
         <item>@drawable/delete_enable</item>
     </string-array>
 
+    <string-array name="letter_str_arr">
+        <item>@string/str_recommendation</item>
+        <item>@string/str_basic</item>
+        <item>@string/str_material</item>
+        <item>@string/str_event</item>
+        <item>@string/str_pattern</item>
+    </string-array>
+
+    <string-array name="text_str_arr">
+        <item>@string/str_font</item>
+        <item>@string/str_thickness</item>
+        <item>@string/str_color</item>
+    </string-array>
+
+    <string-array name="sticker_str_arr">
+        <item>@string/str_recommendation</item>
+        <item>@string/str_love</item>
+        <item>@string/str_freind</item>
+        <item>@string/str_font</item>
+        <item>@string/str_season</item>
+        <item>@string/str_charactor</item>
+    </string-array>
 
 
 </resources>

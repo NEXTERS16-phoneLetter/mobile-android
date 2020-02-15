@@ -23,4 +23,20 @@
     <string name="str_phone_placeholder_input">(-)없이 번호를 입력해 주세요.</string>
     <string name="str_phone_placeholder_output">인증번호를 입력해 주세요.</string>
     <string name="str_signup_success">시작하기</string>
+
+    <string name="str_recommendation">추천</string>
+    <string name="str_basic">기본</string>
+    <string name="str_material">재질</string>
+    <string name="str_event">이벤트</string>
+    <string name="str_pattern">패턴</string>
+
+    <string name="str_font">글꼴</string>
+    <string name="str_thickness">굵기</string>
+    <string name="str_color">색상</string>
+
+    <string name="str_love">사랑</string>
+    <string name="str_freind">우정</string>
+    <string name="str_text">글자</string>
+    <string name="str_season">계절</string>
+    <string name="str_charactor">캐릭터</string>
 </resources>
