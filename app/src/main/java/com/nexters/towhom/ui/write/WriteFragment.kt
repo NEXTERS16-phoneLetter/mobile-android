@@ -1,6 +1,7 @@
 package com.nexters.towhom.ui.write
 
 import android.annotation.SuppressLint
+import android.app.ActionBar
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -9,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.nexters.towhom.R
 import com.nexters.towhom.core.BindingFragment
 import com.nexters.towhom.databinding.FragmentWriteBinding
+import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
 class WriteFragment : BindingFragment<FragmentWriteBinding>() {
@@ -39,6 +41,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
 
         viewPager.adapter = ContentAdapter(testList)
         indicator.createDotPanel(testList.size, R.drawable.indicator_dot_off, R.drawable.indicator_dot_on, 0)
+
+
 
 
     }
