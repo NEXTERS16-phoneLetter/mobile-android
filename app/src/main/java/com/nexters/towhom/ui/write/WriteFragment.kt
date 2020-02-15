@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.nexters.towhom.R
 import com.nexters.towhom.core.BindingFragment
@@ -33,6 +34,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
     private val stickerBtn by lazy { binding.stickerBtn }
     private val addBtn by lazy { binding.addBtn }
     private val deleteBtn by lazy { binding.deleteBtn }
+    private val bottomNavi by lazy { binding.bottomNavi }
 
 
     private val bottomBarButtonList: List<AppCompatImageButton> by lazy {
@@ -44,6 +46,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
             deleteBtn
         )
     }
+
+    private val bottomNaviStatus: MutableList<Boolean> by lazy { mutableListOf(false, false, false, false, false)}
 
 
     /** Test Button */
@@ -120,12 +124,35 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
 
 
         letterBtn.setOnClickListener {
-            selectedButtonImageChange(it)
+            val v = it as AppCompatImageButton
+
+
+            // false 일때  == 안보이는 상태
+            if(!bottomNaviStatus[0])
+            {
+                showBottomNav()
+                selectedButtonImageChange(it)
+            } else {
+                hiddenBottomNav()
+                bottomNaviStatus[0] = false
+                v.setImageResource(R.drawable.letter_default)
+            }
+
+
+
         }
         textBtn.setOnClickListener {
-
-            //            letterBtn.setImageResource(R.drawable.text_enable)
             selectedButtonImageChange(it)
+
+
+            val stickerImage =
+                LayoutInflater.from(context).inflate(R.layout.view_bottom_navi, mstickerLinear, false)
+
+
+            mstickerLinear.addView(stickerImage)
+
+
+
         }
         stickerBtn.setOnClickListener {
 
@@ -145,6 +172,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
                         (v as AppCompatImageButton).setImageResource(R.drawable.letter_add_default)
                         testList.add("tempList") //TODO : 여기 리스트 내용 변경해야함
                         updateLetterPaperStatus()
+
+                        bottomNaviStatus[3] = false
                     } else {
                         Toast.makeText(context, "편지지 추가는 5장이 최대에요 :=)", Toast.LENGTH_SHORT).show()
                     }
@@ -161,6 +190,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
                         (v as AppCompatImageButton).setImageResource(R.drawable.delete_default)
                         testList.removeAt(testList.size - 1)
                         updateLetterPaperStatus()
+
+                        bottomNaviStatus[4] = false
                     } else {
                         Toast.makeText(context, "편지지가 1장밖에 안남았어요 :=)", Toast.LENGTH_SHORT).show()
                     }
@@ -182,8 +213,10 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
         for ((i, btn) in bottomBarButtonList.withIndex()) {
             if (btn == clickBtn) {
                 btn.setImageResource(enableList.getResourceId(i, -1))
+                bottomNaviStatus[i] = true
             } else {
                 btn.setImageResource(defaultList.getResourceId(i, -1))
+                bottomNaviStatus[i] = false
             }
         }
     }
@@ -200,6 +233,18 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
             R.drawable.indicator_dot_on,
             ACTIVATE_PAGE_NUM
         )
+    }
+
+
+    fun showBottomNav() {
+        bottomNavi.visibility = View.VISIBLE
+        bottomNavi.alpha = 0.7f
+
+    }
+
+    fun hiddenBottomNav() {
+        bottomNavi.visibility = View.GONE
+
     }
 
     // 키보드 올라왔는지 확인해주는 기능 ver java
