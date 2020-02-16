@@ -48,7 +48,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_min="50dp"
             app:layout_constraintStart_toEndOf="@id/id_text"
-            app:layout_constraintTop_toBottomOf="@id/temp_text" />
+            app:layout_constraintTop_toBottomOf="@id/temp_text"
+            android:singleLine="true"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/id_clear_btn"
@@ -72,7 +73,8 @@
             app:layout_constraintBottom_toBottomOf="@id/pw_edit"
             app:layout_constraintEnd_toStartOf="@id/pw_edit"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/pw_edit" />
+            app:layout_constraintTop_toTopOf="@id/pw_edit"
+            android:singleLine="true"/>
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/pw_edit"

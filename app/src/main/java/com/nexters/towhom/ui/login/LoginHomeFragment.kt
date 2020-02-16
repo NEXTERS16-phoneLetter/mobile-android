@@ -29,6 +29,8 @@ class LoginHomeFragment : BindingFragment<FragmentLoginHomeBinding>() {
     private lateinit var appLoginBtn: AppCompatButton
     private lateinit var signInBtn: AppCompatButton
     private val TAG = LoginHomeFragment::class.java.simpleName
+    private lateinit var lookAround : AppCompatButton
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -141,10 +143,14 @@ class LoginHomeFragment : BindingFragment<FragmentLoginHomeBinding>() {
     override fun bindingView() {
         appLoginBtn = binding.appLoginBtn // view!!.findViewById<AppCompatButton>(R.id.app_login_btn)
         signInBtn = binding.signInBtn
+        lookAround = binding.btnLookaround
 
     }
 
     override fun bindingEventListener() {
+        lookAround.setOnClickListener {
+            findNavController().navigate(R.id.action_login_to_home)
+        }
 
         appLoginBtn.setOnClickListener {
             findNavController().navigate(R.id.action_login_home_to_app_login)
