@@ -16,6 +16,4 @@
     <string name="str_wrong_length_pw">아직 8자리가 되지 않았어요!</string>
     <string name="str_wrong_same_pw">비밀번호가 같지 않아요 :(</string>
     <string name="str_letter_please"> 편지 내용을 입력해주세요</string>
-    <string name="str_main_title">누구에게\n편지를 써볼까요?</string>
-    <string name="str_pull">&lt;&lt; 밀어서 편지쓰기</string>
 </resources>
