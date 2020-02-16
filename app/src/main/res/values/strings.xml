@@ -16,4 +16,24 @@
     <string name="str_wrong_length_pw">아직 8자리가 되지 않았어요!</string>
     <string name="str_wrong_same_pw">비밀번호가 같지 않아요 :(</string>
     <string name="str_letter_please"> 편지 내용을 입력해주세요</string>
+    
+    <string name="str_recommendation">추천</string>
+    <string name="str_basic">기본</string>
+    <string name="str_material">재질</string>
+    <string name="str_event">이벤트</string>
+    <string name="str_pattern">패턴</string>
+
+    <string name="str_font">글꼴</string>
+    <string name="str_thickness">굵기</string>
+    <string name="str_color">색상</string>
+
+
+    <string name="str_love">사랑</string>
+    <string name="str_freind">우정</string>
+    <string name="str_text">글자</string>
+    <string name="str_season">계절</string>
+    <string name="str_charactor">캐릭터</string>
+
+    <string name="str_main_title">누구에게\n편지를 써볼까요?</string>
+    <string name="str_pull">&lt;&lt; 밀어서 편지쓰기</string>
 </resources>

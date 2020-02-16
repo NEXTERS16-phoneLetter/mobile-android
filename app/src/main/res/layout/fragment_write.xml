@@ -46,6 +46,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
 
+
         </com.nexters.towhom.util.CircleIndicator>
 
         <androidx.appcompat.widget.LinearLayoutCompat
