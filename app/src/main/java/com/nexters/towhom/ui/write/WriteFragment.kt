@@ -11,13 +11,16 @@ import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.viewpager2.widget.ViewPager2
+import com.nexters.towhom.MainActivity
 import com.nexters.towhom.R
+import com.nexters.towhom.core.BindingActivity
 import com.nexters.towhom.core.BindingFragment
 import com.nexters.towhom.databinding.FragmentWriteBinding
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
-class WriteFragment : BindingFragment<FragmentWriteBinding>() {
+class WriteFragment : BindingFragment<FragmentWriteBinding>(),
+    BindingActivity.OnBackPressedListener {
     override fun getLayoutResId(): Int = R.layout.fragment_write
 
     private val viewPager by lazy { binding.contentVp }
@@ -48,7 +51,15 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
         )
     }
 
-    private val bottomNaviStatus: MutableList<Boolean> by lazy { mutableListOf(false, false, false, false, false)}
+    private val bottomNaviStatus: MutableList<Boolean> by lazy {
+        mutableListOf(
+            false,
+            false,
+            false,
+            false,
+            false
+        )
+    }
 
 
     /** Test Button */
@@ -67,6 +78,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
         binding.lifecycleOwner = this
         binding.viewModel = getViewModel()
 
+        (activity as MainActivity).setOnKeyBackPressedListener(this) //backPressed 처리
+
         viewPager.adapter = ContentAdapter(testList)
         indicator.createDotPanel(
             testList.size,
@@ -74,8 +87,6 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
             R.drawable.indicator_dot_on,
             0
         )
-
-
 
 
     }
@@ -128,8 +139,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
             val v = it as AppCompatImageButton
 
             // false 일때  == 안보이는 상태
-            if(!bottomNaviStatus[0])
-            {
+            if (!bottomNaviStatus[0]) {
                 showBottomNav("letter")
                 selectedButtonImageChange(it)
 
@@ -144,8 +154,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
             val v = it as AppCompatImageButton
 
             // false 일때  == 안보이는 상태
-            if(!bottomNaviStatus[1])
-            {
+            if (!bottomNaviStatus[1]) {
                 showBottomNav("text")
                 selectedButtonImageChange(it)
 
@@ -160,8 +169,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
             val v = it as AppCompatImageButton
 
             // false 일때  == 안보이는 상태
-            if(!bottomNaviStatus[2])
-            {
+            if (!bottomNaviStatus[2]) {
                 showBottomNav("sticker")
                 selectedButtonImageChange(it)
 
@@ -254,21 +262,41 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>() {
         bottomNavi.visibility = View.VISIBLE
         bottomNavi.updateView(kind)
 
-       /* when(kind) {
-            "letter" -> {
-                bottomNavi.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorBlack))
-                bottomNavi.`
-            }
-            "text" -> {
-                bottomNavi.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorText))
-            }
-        }*/
+        /* when(kind) {
+             "letter" -> {
+                 bottomNavi.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorBlack))
+                 bottomNavi.`
+             }
+             "text" -> {
+                 bottomNavi.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorText))
+             }
+         }*/
     }
 
     fun hiddenBottomNav() {
         bottomNavi.visibility = View.GONE
+        (activity as MainActivity).setOnKeyBackPressedListener(this) //backPressed 처리
 
     }
+
+    override fun onBackPressed() {
+        if (bottomNavi.visibility == View.VISIBLE) {
+            repeat(bottomNaviStatus.size) { i ->
+                if (bottomNaviStatus[i]) {
+                    bottomNaviStatus[i] = false
+                    bottomBarButtonList[i].setImageResource(defaultList.getResourceId(i, -1))
+                    return@repeat
+                }
+            }
+            hiddenBottomNav()
+
+        } else {
+            (activity as MainActivity).removeOnKeyBackPressedListener()
+            (activity as MainActivity).onBackPressed()
+        }
+
+    }
+
 
     // 키보드 올라왔는지 확인해주는 기능 ver java
 /*
