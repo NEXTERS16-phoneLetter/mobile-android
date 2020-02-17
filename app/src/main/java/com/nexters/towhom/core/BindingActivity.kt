@@ -14,11 +14,16 @@ import com.nexters.towhom.R
 abstract class BindingActivity<T : ViewDataBinding> : AppCompatActivity() {
 
     @LayoutRes
-    abstract fun getLayoutResId() : Int
+    abstract fun getLayoutResId(): Int
 
     protected lateinit var binding: T
         private set
 
+    var backPressedListener: OnBackPressedListener? = null
+
+    interface OnBackPressedListener {
+        fun onBackPressed()
+    }
 
 
     /** SharedPreference 변수 */
@@ -34,7 +39,23 @@ abstract class BindingActivity<T : ViewDataBinding> : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, getLayoutResId())
     }
 
-  /*  override fun onBackPressed() {
+    fun setOnKeyBackPressedListener(listener: OnBackPressedListener) {
+        this.backPressedListener = listener
+    }
+
+    fun removeOnKeyBackPressedListener() {
+        this.backPressedListener = null
+    }
+
+    override fun onBackPressed() {
+        if (backPressedListener != null) {
+            backPressedListener!!.onBackPressed()
+        } else {
+            super.onBackPressed()
+        }
+
+    }
+    /*  override fun onBackPressed() {
         val tempTime = System.currentTimeMillis()
         val intervalTime = tempTime - BACKPRESSED_TIME
 

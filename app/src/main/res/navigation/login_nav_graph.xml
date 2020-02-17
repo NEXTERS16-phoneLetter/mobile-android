@@ -61,7 +61,8 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_home_to_write"
-            app:destination="@id/write" />
+            app:destination="@id/write"
+            app:popUpToInclusive="true"/>
     </fragment>
 
     <fragment

@@ -68,6 +68,7 @@ class BottomNaviView : RelativeLayout {
         }
 
         vp.adapter = BottomNavAdapter(tabList)
+//        tabs.setupWithViewPager(vp!!)
 
     /*    vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

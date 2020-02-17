@@ -15,6 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+ㅁ
         <androidx.appcompat.widget.LinearLayoutCompat
             android:id="@+id/sticker_linear"
             android:layout_width="wrap_content"
@@ -43,6 +44,7 @@
             app:layout_constraintBottom_toBottomOf="@id/content_vp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
+
 
 
         </com.nexters.towhom.util.CircleIndicator>
@@ -121,10 +123,9 @@
             android:layout_width="match_parent"
             android:layout_height="244dp"
             android:visibility="gone"
+            tools:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:visibility="visible">
-        </com.nexters.towhom.util.BottomNaviView>
+            app:layout_constraintStart_toStartOf="parent" />
 
 
         <!--   <androidx.appcompat.widget.AppCompatButton

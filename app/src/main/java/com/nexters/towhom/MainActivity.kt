@@ -10,14 +10,21 @@ import com.nexters.towhom.databinding.ActivityMainBinding
 class MainActivity : BindingActivity<ActivityMainBinding>() {
     override fun getLayoutResId(): Int = R.layout.activity_main
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding.lifecycleOwner = this
     }
 
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+    }
+
+
     private fun updateStatusBarColor() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             val window = this@MainActivity.window
             window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
             window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.white)
