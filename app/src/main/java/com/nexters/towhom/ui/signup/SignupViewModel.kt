@@ -6,6 +6,7 @@ import com.nexters.towhom.ui.login.LoginHomeModel
 import com.nexters.towhom.vo.TEST_LoginParams
 import com.nexters.towhom.vo.TEST_LoginReturn
 
+
 class SignupViewModel : BaseViewModel() {
     private val _emailInsertLiveData: MutableLiveData<String> = MutableLiveData()
     val emailInsertLiveData: MutableLiveData<String>

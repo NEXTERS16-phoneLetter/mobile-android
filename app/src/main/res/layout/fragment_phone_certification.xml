@@ -7,7 +7,7 @@
 
         <variable
                 name="viewModel"
-                type="com.nexters.towhom.ui.signup.SignupViewModel" />
+                type="com.nexters.towhom.ui.signup.PhoneCertificationViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -39,12 +39,11 @@
                 android:textColor="#000"
                 android:textSize="12dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/phone_insert_text"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/phone_insert_text" />
 
 
         <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/phone_insert_et"
+                android:id="@+id/phone_insert"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="24dp"
@@ -53,7 +52,7 @@
                 android:background="@drawable/ic_empty_rect"
                 android:hint="@string/str_phone_placeholder_input"
                 android:padding="14dp"
-                android:text="@={viewModel.pwInsertLiveData}"
+                android:text="@={viewModel.phoneInsertLiveData}"
                 app:layout_constraintHeight_min="50dp"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -66,13 +65,30 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="#00ff0000"
-                android:onClick='@{() ->viewModel.clearEditText("pwInsertClear")}'
+                android:onClick='@{() ->viewModel.clearEditText("phoneInsertClear")}'
                 android:src="@drawable/ic_text_delete2x"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/phone_insert_et"
-                app:layout_constraintEnd_toEndOf="@id/phone_insert_et"
-                app:layout_constraintTop_toTopOf="@id/phone_insert_et"
+                app:layout_constraintBottom_toBottomOf="@id/phone_insert"
+                app:layout_constraintEnd_toEndOf="@id/phone_insert"
+                app:layout_constraintTop_toTopOf="@id/phone_insert"
+                app:layout_constraintEnd_toStartOf="@id/phone_certification_btn"
                 tools:visibility="visible" />
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/phone_certification_btn"
+                style="@style/textClearImageButtonStyle"
+                android:layout_width="64dp"
+                android:layout_height="32dp"
+                android:background="@drawable/selector_login_btn"
+                android:text="@string/str_signup_certification"
+                app:layout_constraintBottom_toBottomOf="@id/phone_insert"
+                app:layout_constraintTop_toTopOf="@id/phone_insert"
+                app:layout_constraintEnd_toEndOf="@id/phone_insert"
+                tools:visibility="visible"
+                android:textColor="@color/white"
+                android:textSize="12dp"/>
+        <!--  app:layout_constraintEnd_toStartOf=""-->
+
 
         <!--<androidx.appcompat.widget.AppCompatTextView-->
         <!--android:id="@+id/pw_text"-->
@@ -83,43 +99,60 @@
         <!--android:textColor="#000" />-->
 
         <androidx.appcompat.widget.AppCompatEditText
-                android:id="@+id/phone_certification_number_insert"
+                android:id="@+id/phone_certification_insert"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ic_empty_rect"
                 android:layout_marginLeft="25dp"
                 android:layout_marginTop="24dp"
-                android:padding="14dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/ic_empty_rect"
                 android:hint="@string/str_phone_placeholder_output"
                 android:inputType="textPassword"
-                android:text="@={viewModel.pwInsertCheckLiveData}"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginRight="24dp"
+                android:text="@={viewModel.phoneCertificationLiveData}"
+                android:padding="14dp"
                 app:layout_constraintHeight_min="50dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/phone_insert_et" />
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phone_insert" />
+        <!-- android:text="@={viewModel.pwInsertCheckLiveData}"-->
+
 
         <!--android:text_default="@={viewModel.pwLiveData}"-->
         <!-- 이부분때문에 계속 에러잡힘 -->
 
 
         <androidx.appcompat.widget.AppCompatImageButton
-                android:id="@+id/pw_insert_check_clear_btn"
+                android:id="@+id/phone_certification_clear_btn"
                 style="@style/textClearImageButtonStyle"
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:background="#00ff0000"
-                android:onClick='@{() ->viewModel.clearEditText("pwInsertClearCheck")}'
+                android:onClick='@{() ->viewModel.clearEditText("phoneCertificationClear")}'
                 android:src="@drawable/ic_text_delete2x"
                 android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="@id/phone_certification_number_insert"
-                app:layout_constraintEnd_toEndOf="@id/phone_certification_number_insert"
-                app:layout_constraintTop_toTopOf="@id/phone_certification_number_insert"
+                app:layout_constraintBottom_toBottomOf="@id/phone_certification_insert"
+                app:layout_constraintEnd_toEndOf="@id/phone_certification_insert"
+                app:layout_constraintTop_toTopOf="@id/phone_certification_insert"
+                app:layout_constraintEnd_toStartOf="@id/phone_certification_time"
                 tools:visibility="visible" />
+
+        <TextView
+                android:id="@+id/phone_certification_time"
+                style="@style/textClearImageButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="05:00"
+                app:layout_constraintBottom_toBottomOf="@id/phone_certification_insert"
+                app:layout_constraintTop_toTopOf="@id/phone_certification_insert"
+                app:layout_constraintEnd_toEndOf="@id/phone_certification_insert"
+                tools:visibility="visible"
+                android:textColor="@color/grapefruit"
+                android:layout_marginEnd="16dp"
+                android:textSize="12dp"/>
 
 
         <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/signup_btn"
+                android:id="@+id/phone_cert_btn"
                 android:layout_width="0dp"
                 android:layout_height="56dp"
                 android:layout_marginLeft="24dp"
@@ -127,13 +160,13 @@
                 android:layout_marginRight="24dp"
                 android:background="@drawable/selector_login_btn"
                 android:enabled="false"
+                android:onClick='@{() ->viewModel.trySignup()}'
                 android:text="@string/str_signup_success"
                 android:textColor="@color/white"
-                android:onClick='@{() ->viewModel.trySignup()}'
                 android:textSize="@dimen/text_14"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/phone_certification_number_insert" />
+                app:layout_constraintTop_toBottomOf="@id/phone_certification_insert" />
 
         <!--android:onClick='@{() ->viewModel.tryContinue()}'-->
         <!-- 이부분때문에 에러잡힘 -->

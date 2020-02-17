@@ -1,5 +1,6 @@
 package com.nexters.towhom.ui.signup
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.nexters.towhom.core.BaseViewModel
 import com.nexters.towhom.ui.login.LoginHomeModel
@@ -13,19 +14,18 @@ class PhoneCertificationViewModel : BaseViewModel() {
 
     private val _phoneCertificationLiveData: MutableLiveData<String> = MutableLiveData()
     val phoneCertificationLiveData: MutableLiveData<String>
-        get() = _phoneCertificationLiveData
-
+        get() = _phoneCertificationLiveData;
 
     //생각
 //    // TODO : login interface에서 받아오는 값 Objects 자리에 대체
     private val _loginCheckLiveData: MutableLiveData<TEST_LoginReturn> = MutableLiveData()
-    val loginCheckListData: MutableLiveData<TEST_LoginReturn>
+    val loginCheckListData: LiveData<TEST_LoginReturn>
         get() = _loginCheckLiveData
 
     fun clearEditText(clearTarget: String) {
         when (clearTarget) {
-//            "pwInsertClear" -> _pwInsertLiveData.value = ""
-//            "pwInsertClearCheck" -> _pwInsertCheckLiveData.value = ""
+            "phoneClearBtn" -> _phoneInsertLiveData.value = ""
+            "phoneCertificationBtn" -> _phoneCertificationLiveData.value = ""
         }
     }
 
@@ -37,7 +37,7 @@ class PhoneCertificationViewModel : BaseViewModel() {
         val response = LoginHomeModel().callNetwork(
             TEST_LoginParams(
                 _phoneInsertLiveData.value.toString(),
-                _phoneCertificationLiveData.value.toString()
+                phoneCertificationLiveData.value.toString()
             )
         )
 

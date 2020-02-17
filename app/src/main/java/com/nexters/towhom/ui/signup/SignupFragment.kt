@@ -50,7 +50,6 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
 //            setWrongMessageHide()
         })
 
-        // 생
         vm.loginCheckListData.observe(viewLifecycleOwner, Observer {
             findNavController().navigate(R.id.action_signup_to_phone)
 
@@ -84,7 +83,6 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
     private fun setCommonDataUserInfo() {
         CommonData.USERID = pwInsert.text.toString()
     }
-    //이 userid는 뭐야? commondata가 뭔지도 모르겠읍니
 
 
 //    private fun setWrongMessageHide() {

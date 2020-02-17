@@ -12,16 +12,19 @@ import com.nexters.towhom.vo.CommonData
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import androidx.lifecycle.Observer
 import com.nexters.towhom.databinding.FragmentPhoneCertificationBinding
+import kotlinx.android.synthetic.main.fragment_phone_certification.*
 
 class PhoneCertificationFragment : BindingFragment<FragmentPhoneCertificationBinding>() {
     override fun getLayoutResId(): Int = R.layout.fragment_phone_certification
 
     private val vm by lazy { binding.viewModel!! }
-    private val phoneInsert by lazy { binding.phoneInsertEt }
-    private val phoneCertificationInsert by lazy { binding.phoneCertificationNumberInsert }
+    private val phoneInsert by lazy { binding.phoneInsert }
+    private val phoneCertificationInsert by lazy { binding.phoneCertificationInsert }
 
 //    private val wrongTv by lazy { binding.wrongMsgTv }// 존재여부 잘 모르겠
-    private val signupBtn by lazy { binding.signupBtn}
+    private val phoneCertBtn by lazy { binding.phoneCertBtn}
+
+    /** @author kiyeon_kim */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -31,19 +34,26 @@ class PhoneCertificationFragment : BindingFragment<FragmentPhoneCertificationBin
     }
 
     override fun bindingEventListener() {
+        phoneCertBtn.setOnClickListener{
+            this.certInsert();
+        }
+    }
+
+    private fun certInsert() {
+        val certText = phoneCertificationInsert.text
 
     }
 
     override fun bindingObserver() {
-//        vm.phoneInsertLiveData.observe(viewLifecycleOwner, Observer {
-//            isTextEmpty(binding.phoneInsertEt, it)
-//            checkAndUpdateSignupBtnEnabled()
-////            setWrongMessageHide()
-//        })
+        vm.phoneInsertLiveData.observe(viewLifecycleOwner, Observer {
+            isTextEmpty(binding.phoneInsertClearBtn, it)
+            checkAndUpdatePhoneBtnEnabled()
+//            setWrongMessageHide()
+        })
 
-        vm.pwInsertCheckLiveData.observe(viewLifecycleOwner, Observer {
-            isTextEmpty(binding.pwInsertCheckClearBtn, it)
-            checkAndUpdateSignupBtnEnabled()
+        vm.phoneCertificationLiveData.observe(viewLifecycleOwner, Observer {
+            isTextEmpty(binding.phoneCertificationClearBtn, it)
+            checkAndUpdatePhoneBtnEnabled()
 //            setWrongMessageHide()
         })
 
@@ -86,8 +96,8 @@ class PhoneCertificationFragment : BindingFragment<FragmentPhoneCertificationBin
 //        if (wrongTv.isVisible) wrongTv.visibility = View.GONE
 //    }
 
-    private fun checkAndUpdateSignupBtnEnabled() {
-//        continueBtn.isEnabled = pwInsert.text!!.isNotEmpty() && pwInsert.text!!.isNotEmpty()
+    private fun checkAndUpdatePhoneBtnEnabled() {
+        phoneCertBtn.isEnabled = phoneInsert.text!!.isNotEmpty() && phoneCertificationInsert.text!!.isNotEmpty()
     }
 
 

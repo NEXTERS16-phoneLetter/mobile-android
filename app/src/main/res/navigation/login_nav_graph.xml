@@ -75,7 +75,7 @@
         android:id="@+id/signup_phone"
         android:name="com.nexters.towhom.ui.signup.PhoneCertificationFragment"
         android:label="@string/app_name"
-        tools:layout="@layout/fragment_signup_phone"
+        tools:layout="@layout/fragment_phone_certification"
     />
 
 </navigation>

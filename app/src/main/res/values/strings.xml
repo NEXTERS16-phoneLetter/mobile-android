@@ -6,7 +6,7 @@
     <string name="str_wrong_id_pw">아이디와 비밀번호가 일치하지 않습니다.\n 확인 후 다시 입력해주세요.</string>
     <string name="str_login_save_id">아이디 저장</string>
     <string name="str_login_auth">자동 로그인</string>
-    <string name="str_login">로그인</string>
+    <string name="str_login">시작하기</string>
     <string name="str_id">아이디</string>
     <string name="str_pw">비밀번호</string>
     <string name="str_wrong_user_per">카카오톡 가입이 되어있는 사용자 입니다.</string>
@@ -39,4 +39,8 @@
     <string name="str_text">글자</string>
     <string name="str_season">계절</string>
     <string name="str_charactor">캐릭터</string>
+
+    <string name="str_signup_certification">인하기</string>
+    <string name="str_hello">안녕하세요 :)</string>
+    
 </resources>
