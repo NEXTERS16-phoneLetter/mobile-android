@@ -48,6 +48,7 @@
         <com.nexters.towhom.util.CircleIndicator
             android:id="@+id/content_indicator"
             android:layout_width="wrap_content"
+
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/layout_24"
             app:layout_constraintBottom_toBottomOf="@id/content_vp"

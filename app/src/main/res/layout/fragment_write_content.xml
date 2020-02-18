@@ -15,16 +15,33 @@
 
         <EditText
             android:id="@+id/letter_text"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="312dp"
+            android:layout_height="290dp"
             android:gravity="top"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             android:inputType="textMultiLine"
             android:maxLength="250"
-            android:textSize="30dp"
+            android:textSize="14dp"
             android:hint="@string/str_letter_please"
             android:background="@null"
+            android:layout_marginTop="96dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gallery_image"
+            />
+
+        <ImageView
+            android:id="@+id/gallery_image"
+            android:layout_width="312dp"
+            android:layout_height="212dp"
+            app:srcCompat = "@drawable/icon"
+            android:scaleType="fitCenter"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginStart="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/letter_text"
+            app:layout_constraintBottom_toBottomOf="parent"
             />
 
 
