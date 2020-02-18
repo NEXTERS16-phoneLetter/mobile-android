@@ -16,16 +16,18 @@
         <EditText
             android:id="@+id/letter_text"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="top"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:inputType="textMultiLine"
             android:maxLength="250"
             android:textSize="30dp"
-            android:scrollbars="vertical"
             android:hint="@string/str_letter_please"
             android:background="@null"
             />
+
+
 
 
 
