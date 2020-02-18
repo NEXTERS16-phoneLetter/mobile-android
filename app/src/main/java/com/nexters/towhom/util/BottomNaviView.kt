@@ -52,36 +52,21 @@ class BottomNaviView : RelativeLayout {
 
     //0 theme, 1 글꼴, 2 스티
     public fun updateView(category: String) {
+
+
         when (category) {
-            "letter" -> showThemeView()
-            "text" -> showFontView()
-            "sticker" -> showStickerView()
-        }
-    }
-
-    private fun showThemeView() {
-        tabs.removeAllTabs()
-        val tabList = resources.getStringArray(R.array.letter_str_arr)
-
-        repeat(tabList.count()) {
-            tabs.addTab(tabs.newTab().setCustomView(createTabView(tabList[it])))
-        }
-
-        vp.adapter = BottomNavAdapter(tabList)
-//        tabs.setupWithViewPager(vp!!)
-
-    /*    vp.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                vp.currentItem = position
+            "letter" ->  {
+                connectTabWithViewPager(resources.getStringArray(R.array.letter_str_arr))
             }
-        })
-
-        TabLayoutMediator(tabs, vp) { tab, position ->
-
-        }.attach()*/
-
-
+            "text" ->  {
+                connectTabWithViewPager(resources.getStringArray(R.array.text_str_arr))
+            }
+            "sticker" -> {
+                connectTabWithViewPager(resources.getStringArray(R.array.sticker_str_arr))
+            }
+        }
     }
+
 
     private fun createTabView(tabName: String): View {
         val v = LayoutInflater.from(context).inflate(R.layout.custom_tab_view, null)
@@ -91,26 +76,17 @@ class BottomNaviView : RelativeLayout {
     }
 
 
-    private fun showFontView() {
+    private fun connectTabWithViewPager(tabList: Array<String>) {
         tabs.removeAllTabs()
-        resources.getStringArray(R.array.text_str_arr).apply {
-            repeat(this.count()) {
-                tabs.addTab(tabs.newTab().setCustomView(createTabView(this[it])))
-            }
-        }
-    }
-
-    private fun showStickerView() {
-        tabs.removeAllTabs()
-        resources.getStringArray(R.array.sticker_str_arr).apply {
-            repeat(this.count()) {
-                tabs.addTab(tabs.newTab().setCustomView(createTabView(this[it])))
-            }
+        repeat(tabList.count()) {
+            tabs.addTab(tabs.newTab().setCustomView(createTabView(tabList[it])))
         }
 
+        vp.adapter = BottomNavAdapter(tabList)
 
-
-
+        TabLayoutMediator(tabs, vp) { tab, position ->
+            tab.text = tabList[position]
+        }.attach()
     }
 
 
