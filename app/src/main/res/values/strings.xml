@@ -35,13 +35,14 @@
     <string name="str_font">글꼴</string>
     <string name="str_thickness">굵기</string>
     <string name="str_color">색상</string>
-    
+
     <string name="str_love">사랑</string>
     <string name="str_freind">우정</string>
     <string name="str_text">글자</string>
     <string name="str_season">계절</string>
     <string name="str_charactor">캐릭터</string>
-
+    <string name="str_main_title">누구에게\n편지를 써볼까요?</string>
+    <string name="str_pull">&lt;&lt; 밀어서 편지쓰기</string>
     <string name="str_signup_certification">확인하기</string>
     <string name="str_hello">안녕하세요 :)</string>
 
