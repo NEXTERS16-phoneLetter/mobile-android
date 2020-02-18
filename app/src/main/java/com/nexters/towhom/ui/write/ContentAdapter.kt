@@ -14,6 +14,7 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.MediaController
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.nexters.towhom.MainActivity
 import com.nexters.towhom.R
@@ -24,7 +25,8 @@ class ContentAdapter(private var items: MutableList<String>) :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_write_content, parent, false)
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.fragment_write_content, parent, false)
         return ContentViewHolder(view)
 
 
@@ -33,7 +35,7 @@ class ContentAdapter(private var items: MutableList<String>) :
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ContentViewHolder, position: Int) {
-
+        holder.bind(position)
     }
 
     fun setUpdateItems(items: MutableList<String>) {
@@ -43,24 +45,31 @@ class ContentAdapter(private var items: MutableList<String>) :
 
     inner class ContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private lateinit var letterEdit: EditText
-        private lateinit var galleryImage : ImageView
+        private lateinit var galleryContainer: ConstraintLayout
         private val GALLERY = 0
+
         init {
-            letterEdit=itemView.findViewById<EditText>( R.id.letter_text)
-            galleryImage = itemView.findViewById(R.id.gallery_image)
+            letterEdit = itemView.findViewById<EditText>(R.id.letter_text)
+            galleryContainer = itemView.findViewById(R.id.gallery_image)
+
 
             /** edittext 줄 수 제한 **/
-            letterEdit.addTextChangedListener(object:TextWatcher{
+            letterEdit.addTextChangedListener(object : TextWatcher {
                 var previousstirng = ""
                 override fun afterTextChanged(s: Editable?) {
-                    if(letterEdit.lineCount >= 11){
+                    if (letterEdit.lineCount >= 11) {
                         Toast.makeText(itemView.context, "편지지를 추가해주세요", Toast.LENGTH_SHORT).show()
                         letterEdit.setText(previousstirng)
                         letterEdit.setSelection(letterEdit.length())
                     }
                 }
 
-                override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                override fun beforeTextChanged(
+                    s: CharSequence?,
+                    start: Int,
+                    count: Int,
+                    after: Int
+                ) {
                     previousstirng = s.toString()
                 }
 
@@ -69,24 +78,28 @@ class ContentAdapter(private var items: MutableList<String>) :
 
             })
 
-            galleryImage.setOnClickListener{
-                val intent : Intent = Intent(Intent.ACTION_GET_CONTENT)
-                intent.type="image/*"
+            galleryContainer.setOnClickListener {
+                val intent: Intent = Intent(Intent.ACTION_GET_CONTENT)
+                intent.type = "image/*"
                 (itemView.context as MainActivity).startActivityForResult(intent, GALLERY)
 
             }
 
         }
+
+        fun bind(position: Int) {
+
+        }
         /**
         fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-            if(requestCode == GALLERY && resultCode == RESULT_OK ){
-                val selectedImageUri: Uri ? = data?.data
-                =
-                galleryImage.setImageURI(selectedImageUri)
-            }
+        if(requestCode == GALLERY && resultCode == RESULT_OK ){
+        val selectedImageUri: Uri ? = data?.data
+        =
+        galleryImage.setImageURI(selectedImageUri)
+        }
         }
 
-        **/
+         **/
 
     }
 

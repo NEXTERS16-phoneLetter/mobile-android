@@ -5,6 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
@@ -42,13 +44,13 @@ class WriteBarView : RelativeLayout {
           }
         */
 
-        val btn_back = view.findViewById<ConstraintLayout>(R.id.btn_write_back)
+        val btn_back = view.findViewById<AppCompatImageButton>(R.id.btn_write_back)
         btn_back.setOnClickListener {
 //            onBackPressed();
             // 뒤로가기
         }
 
-        val btn_success = view.findViewById<ConstraintLayout>(R.id.btn_write_success)
+        val btn_success = view.findViewById<AppCompatButton>(R.id.btn_write_success)
         btn_success.setOnClickListener{
             // 편지쓰기 완료
        }
