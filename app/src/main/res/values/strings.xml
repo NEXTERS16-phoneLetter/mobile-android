@@ -22,6 +22,8 @@
     <string name="str_phone_please_sub">정확한 편지전달을 위해서 필요해요.</string>
     <string name="str_phone_placeholder_input">(-)없이 번호를 입력해 주세요.</string>
     <string name="str_phone_placeholder_output">인증번호를 입력해 주세요.</string>
+    <string name="str_main_title">누구에게 편지를 쓸까요?</string>
+    <string name="str_pull"> 밀어서 편지쓰기 &gt;&gt;</string>
     <string name="str_signup_success">시작하기</string>
 
     <string name="str_recommendation">추천</string>

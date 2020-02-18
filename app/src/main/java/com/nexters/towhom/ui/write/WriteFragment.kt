@@ -30,9 +30,6 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     private val mstickerLinear by lazy { binding.stickerLinear }
     private val add_sticker_btn by lazy { binding.stickerBtn }
 
-    /**sticker_drag**/
-    private val mainLayout by lazy { binding.mainConstraint }
-
     private val letterBtn by lazy { binding.letterBtn }
     private val textBtn by lazy { binding.textBtn }
     private val stickerBtn by lazy { binding.stickerBtn }
