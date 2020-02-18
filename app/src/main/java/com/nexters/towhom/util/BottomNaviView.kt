@@ -50,19 +50,19 @@ class BottomNaviView : RelativeLayout {
     }
 
 
-    //0 theme, 1 글꼴, 2 스티
+    //0 theme, 1 글꼴, 2 스티커
     public fun updateView(category: String) {
 
 
         when (category) {
             "letter" ->  {
-                connectTabWithViewPager(resources.getStringArray(R.array.letter_str_arr))
+                connectTabWithViewPager(resources.getStringArray(R.array.letter_str_arr), "letter")
             }
             "text" ->  {
-                connectTabWithViewPager(resources.getStringArray(R.array.text_str_arr))
+                connectTabWithViewPager(resources.getStringArray(R.array.text_str_arr), "text")
             }
             "sticker" -> {
-                connectTabWithViewPager(resources.getStringArray(R.array.sticker_str_arr))
+                connectTabWithViewPager(resources.getStringArray(R.array.sticker_str_arr), "sticker")
             }
         }
     }
@@ -76,13 +76,13 @@ class BottomNaviView : RelativeLayout {
     }
 
 
-    private fun connectTabWithViewPager(tabList: Array<String>) {
+    private fun connectTabWithViewPager(tabList: Array<String>, tabName: String) {
         tabs.removeAllTabs()
         repeat(tabList.count()) {
             tabs.addTab(tabs.newTab().setCustomView(createTabView(tabList[it])))
         }
 
-        vp.adapter = BottomNavAdapter(tabList)
+        vp.adapter = BottomNavAdapter(tabList, tabName)
 
         TabLayoutMediator(tabs, vp) { tab, position ->
             tab.text = tabList[position]
