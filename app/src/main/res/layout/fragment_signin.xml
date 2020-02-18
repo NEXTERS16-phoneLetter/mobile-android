@@ -13,43 +13,35 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp">
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp">
 
         <TextView
-            android:id="@+id/temp_text"
+            android:id="@+id/txt_hello"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Login Activity"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/id_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:text="ID "
-            android:textColor="#000"
-            app:layout_constraintBottom_toBottomOf="@id/id_edit"
-            app:layout_constraintEnd_toStartOf="@id/id_edit"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/id_edit" />
+            android:text="@string/str_hello"
+            app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="8dp"
+                android:textSize="24dp"
+                android:textColor="@color/colorBlack"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:layout_marginLeft="0dp"
+                android:textStyle="bold" />
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/id_edit"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:hint="@string/str_id"
+                android:background="@drawable/ic_empty_rect"
             android:text="@={viewModel.idLiveData}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHeight_min="50dp"
-            app:layout_constraintStart_toEndOf="@id/id_text"
-            app:layout_constraintTop_toBottomOf="@id/temp_text"
-            android:singleLine="true"/>
+            app:layout_constraintTop_toBottomOf="@id/txt_hello"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:padding="14dp"
+                />
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/id_clear_btn"
@@ -63,31 +55,22 @@
             app:layout_constraintTop_toTopOf="@id/id_edit"
             tools:visibility="visible" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/pw_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:text="PW "
-            android:textColor="#000"
-            app:layout_constraintBottom_toBottomOf="@id/pw_edit"
-            app:layout_constraintEnd_toStartOf="@id/pw_edit"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/pw_edit"
-            android:singleLine="true"/>
-
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/pw_edit"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="15dp"
             android:hint="@string/str_pw"
+                android:background="@drawable/ic_empty_rect"
             android:inputType="textPassword"
             android:text="@={viewModel.pwLiveData}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_min="50dp"
             app:layout_constraintStart_toStartOf="@id/id_edit"
-            app:layout_constraintTop_toBottomOf="@id/id_edit" />
+            app:layout_constraintTop_toBottomOf="@id/id_edit"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:padding="14dp"/>
 
         <androidx.appcompat.widget.AppCompatImageButton
             android:id="@+id/pw_clear_btn"

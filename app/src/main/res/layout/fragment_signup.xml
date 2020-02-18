@@ -4,124 +4,125 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
                 name="viewModel"
                 type="com.nexters.towhom.ui.signup.SignupViewModel" />
     </data>
 
-<androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp">
-
-    <TextView
-            android:id="@+id/temp_text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="가입되지 않은 이메일입니다. 가입하시겠어요?"
-            android:layout_marginTop="16dp"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-            android:id="@+id/email_insert_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="15dp"
-            android:text="비밀번호 입력"
-            android:textColor="#000"
-            app:layout_constraintTop_toBottomOf="@id/temp_text2"
-            android:layout_marginTop="24dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="25dp"
-    />
-
-    <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/email_insert"
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:hint="@string/str_id"
-            android:text="@={viewModel.emailInsertLiveData}"
-            app:layout_constraintHeight_min="50dp"
-            app:layout_constraintTop_toBottomOf="@id/email_insert_text"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="25dp"
-    />
-
-    <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/email_insert_clear_btn"
-            style="@style/textClearImageButtonStyle"
-            android:background="#000"
-            android:onClick='@{() ->viewModel.clearEditText("emailInsertClear")}'
-            android:src="@drawable/abc_vector_test"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@id/email_insert"
-            app:layout_constraintEnd_toEndOf="@id/email_insert"
-            app:layout_constraintTop_toTopOf="@id/email_insert"
-            app:layout_constraintHeight_min="50dp"
-            tools:visibility="visible" />
-
-    <!--<androidx.appcompat.widget.AppCompatTextView-->
-            <!--android:id="@+id/pw_text"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginEnd="15dp"-->
-            <!--android:text_default="PW "-->
-            <!--android:textColor="#000" />-->
-
-    <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/pw_insert"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:hint="@string/str_pw"
-            android:inputType="textPassword"
-            android:text="@={viewModel.pwInsertLiveData}"
-            app:layout_constraintHeight_min="50dp"
-            app:layout_constraintTop_toBottomOf="@id/email_insert"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="25dp"
-    />
-
-    <!--android:text_default="@={viewModel.pwLiveData}"-->
-    <!-- 이부분때문에 계속 에러잡힘 -->
+            android:layout_height="match_parent"
+            android:background="#ffffff">
 
 
-    <androidx.appcompat.widget.AppCompatImageButton
-            android:id="@+id/pw_insert_clear_btn"
-            style="@style/textClearImageButtonStyle"
-            android:background="#000"
-            android:onClick='@{() ->viewModel.clearEditText("pwInsertClear")}'
-            android:src="@drawable/abc_vector_test"
-            android:visibility="gone"
-            tools:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="@id/pw_insert"
-            app:layout_constraintEnd_toEndOf="@id/pw_insert"
-            app:layout_constraintTop_toTopOf="@id/pw_insert"
-    />
+        <TextView
+                android:id="@+id/email_insert_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="15dp"
+                android:text="회원가입을 해주세요 :)"
+                android:textColor="#000"
+                android:textSize="24dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/email_insert"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/ic_empty_rect"
+                android:hint="@string/str_email_insert"
+                android:text="@={viewModel.emailInsertLiveData}"
+                android:padding="14dp"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="24dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintHeight_min="50dp"
+                app:layout_constraintTop_toBottomOf="@id/email_insert_text" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/email_insert_clear_btn"
+                style="@style/textClearImageButtonStyle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="#00ff0000"
+                android:onClick='@{() ->viewModel.clearEditText("emailInsertClear")}'
+                android:src="@drawable/ic_text_delete2x"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/email_insert"
+                app:layout_constraintEnd_toEndOf="@id/email_insert"
+                app:layout_constraintTop_toTopOf="@id/email_insert"
+                tools:visibility="visible" />
+
+        <!--<androidx.appcompat.widget.AppCompatTextView-->
+        <!--android:id="@+id/pw_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="15dp"-->
+        <!--android:text_default="PW "-->
+        <!--android:textColor="#000" />-->
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/pw_insert"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_empty_rect"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="24dp"
+                android:padding="14dp"
+                android:hint="@string/str_password_insert"
+                android:inputType="textPassword"
+                android:text="@={viewModel.pwInsertLiveData}"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="24dp"
+                app:layout_constraintHeight_min="50dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/email_insert" />
+
+        <!--android:text_default="@={viewModel.pwLiveData}"-->
+        <!-- 이부분때문에 계속 에러잡힘 -->
 
 
+        <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/pw_insert_clear_btn"
+                style="@style/textClearImageButtonStyle"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="#00ff0000"
+                android:onClick='@{() ->viewModel.clearEditText("pwInsertClear")}'
+                android:src="@drawable/ic_text_delete2x"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="@id/pw_insert"
+                app:layout_constraintEnd_toEndOf="@id/pw_insert"
+                app:layout_constraintTop_toTopOf="@id/pw_insert"
+                tools:visibility="visible" />
 
-    <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/continue_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/selector_login_btn"
-            android:enabled="false"
-            android:minHeight="54dp"
-            android:text="@string/str_continue"
-            android:textColor="@color/white"
-            android:textSize="@dimen/text_14"
-            app:layout_constraintTop_toBottomOf="@id/pw_insert"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginLeft="25dp"/>
 
-    <!--android:onClick='@{() ->viewModel.tryContinue()}'-->
-<!-- 이부분때문에 에러잡힘 -->
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/continue_btn"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/selector_login_btn"
+                android:enabled="false"
+                android:text="@string/str_continue"
+                android:textColor="@color/white"
+                android:onClick='@{() ->viewModel.trySignup()}'
+                android:textSize="@dimen/text_14"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/pw_insert" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <!--android:onClick='@{() ->viewModel.tryContinue()}'-->
+        <!-- 이부분때문에 에러잡힘 -->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

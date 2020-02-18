@@ -11,6 +11,7 @@ import com.nexters.towhom.databinding.FragmentSignupBinding
 import com.nexters.towhom.vo.CommonData
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import androidx.lifecycle.Observer
+import kotlinx.android.synthetic.main.fragment_signup.*
 
 class SignupFragment : BindingFragment<FragmentSignupBinding>() {
     override fun getLayoutResId(): Int = R.layout.fragment_signup
@@ -31,6 +32,9 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
 
     override fun bindingEventListener() {
 
+        continue_btn.setOnClickListener {
+            findNavController().navigate(R.id.action_signup_to_phone)
+        }
     }
 
     override fun bindingObserver() {
@@ -46,9 +50,10 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
 //            setWrongMessageHide()
         })
 
-        // 생
         vm.loginCheckListData.observe(viewLifecycleOwner, Observer {
-            updateAccordingNetworkResult(it.result)
+            findNavController().navigate(R.id.action_signup_to_phone)
+
+//            updateAccordingNetworkResult(it.result)
         })
     }
 
@@ -61,7 +66,8 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
 //            "N" -> setMsgAndShow(resources.getString(R.string.str_wrong_user_permission))
 //            "E" -> setMsgAndShow(resources.getString(R.string.str_network_fail))
             "S" -> {
-                findNavController().navigate(R.id.action_app_signin_to_home)
+                setCommonDataUserInfo()
+                findNavController().navigate(R.id.action_signup_to_phone)
             }
         }
     }
@@ -74,7 +80,9 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
 //        }
 //    }
 
-
+    private fun setCommonDataUserInfo() {
+        CommonData.USERID = pwInsert.text.toString()
+    }
 
 
 //    private fun setWrongMessageHide() {

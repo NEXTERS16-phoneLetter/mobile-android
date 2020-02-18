@@ -32,11 +32,15 @@
         android:label="회원가입"
         tools:layout="@layout/fragment_signup">
         <!-- 이 액션은 회원가입 완료시 사용할 것 -->
+<!--        <action-->
+<!--            android:id="@+id/action_signup_to_login"-->
+<!--            app:popUpTo="@id/signup"-->
+<!--            app:popUpToInclusive="true"-->
+<!--            app:destination="@id/login" />-->
+
         <action
-            android:id="@+id/action_signup_to_login"
-            app:popUpTo="@id/signup"
-            app:popUpToInclusive="true"
-            app:destination="@id/login" />
+                android:id="@+id/action_signup_to_phone"
+                app:destination="@id/signup_phone" />
     </fragment>
 
     <fragment
@@ -70,5 +74,12 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_write"
         />
+
+    <fragment
+        android:id="@+id/signup_phone"
+        android:name="com.nexters.towhom.ui.signup.PhoneCertificationFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_phone_certification"
+    />
 
 </navigation>
