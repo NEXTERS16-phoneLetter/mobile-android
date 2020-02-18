@@ -20,7 +20,10 @@
         <!-- 카카오 간편 로그인시 사용 -->
         <action
             android:id="@+id/action_login_to_home"
-            app:destination="@id/home" />
+            app:destination="@id/home"
+            app:popUpTo="@id/login"
+            app:popUpToInclusive="true"
+            />
     </fragment>
 
     <fragment
