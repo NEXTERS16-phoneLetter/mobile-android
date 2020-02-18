@@ -59,6 +59,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     }
 
 
+
+
     /** Test Button */
 //    private val testBt by lazy { binding.testBtn }
 
@@ -68,6 +70,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     var testList = mutableListOf<String>("list1")
 
     private var ACTIVATE_PAGE_NUM = 0
+
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -252,6 +255,21 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
             R.drawable.indicator_dot_on,
             ACTIVATE_PAGE_NUM
         )
+    }
+
+    fun showTopNav(kind: String) {
+        bottomNavi.visibility = View.VISIBLE
+        bottomNavi.updateView(kind)
+
+        /* when(kind) {
+             "letter" -> {
+                 bottomNavi.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorBlack))
+                 bottomNavi.`
+             }
+             "text" -> {
+                 bottomNavi.setBackgroundColor(ContextCompat.getColor(context!!, R.color.colorText))
+             }
+         }*/
     }
 
 

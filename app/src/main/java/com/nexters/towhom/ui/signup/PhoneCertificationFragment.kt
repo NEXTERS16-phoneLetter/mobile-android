@@ -24,7 +24,7 @@ class PhoneCertificationFragment : BindingFragment<FragmentPhoneCertificationBin
 //    private val wrongTv by lazy { binding.wrongMsgTv }// 존재여부 잘 모르겠
     private val phoneCertBtn by lazy { binding.phoneCertBtn}
 
-    /** @author kiyeon_kim */
+    /** @author Dain Kim */
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
