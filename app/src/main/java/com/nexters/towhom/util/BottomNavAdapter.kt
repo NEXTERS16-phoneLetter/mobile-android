@@ -33,6 +33,7 @@ class BottomNavAdapter(private val list: Array<String>, private val tabName: Str
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val grid by lazy { itemView.findViewById<GridView>(R.id.content_grid_view) }
 
+
         fun bind(position: Int) {
             when (tabName) {
                 "letter" -> {
@@ -46,6 +47,8 @@ class BottomNavAdapter(private val list: Array<String>, private val tabName: Str
                 }
             }
             val testList = arrayListOf<String>("aa","bb","aa","bb","aa","bb","aa","bb","aa","bb","aa","bb","aa","bb","aa","bb")
+
+
 
             grid.adapter = TabInGridAdapter(itemView.context, testList)
 

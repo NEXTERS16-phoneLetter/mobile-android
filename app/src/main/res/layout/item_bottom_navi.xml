@@ -9,8 +9,11 @@
         android:id="@+id/content_grid_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:horizontalSpacing="@dimen/layout_12"
-        android:verticalSpacing="@dimen/layout_8"
+        android:paddingStart="@dimen/layout_24"
+        android:paddingEnd="@dimen/layout_24"
+        android:horizontalSpacing="15dp"
+        android:scrollbarStyle="outsideOverlay"
+        android:verticalSpacing="15dp"
         android:numColumns="3" />
 
 

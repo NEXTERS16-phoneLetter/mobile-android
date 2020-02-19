@@ -3,6 +3,9 @@
     <dimen name="layout_8">8dp</dimen>
     <dimen name="layout_24">24dp</dimen>
     <dimen name="layout_4">4dp</dimen>
+
+    <dimen name="layout_16">16dp</dimen>
+
     <dimen name="layout_12">12dp</dimen>
     <dimen name="layout_138">138dp</dimen>
     <dimen name="layout_300">300dp</dimen>

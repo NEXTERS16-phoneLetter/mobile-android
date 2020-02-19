@@ -65,7 +65,8 @@
         <action
             android:id="@+id/action_home_to_write"
             app:destination="@id/write"
-            app:enterAnim="@anim/right_to_left"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_left"
             app:popUpToInclusive="true"/>
     </fragment>
 

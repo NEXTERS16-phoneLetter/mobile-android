@@ -4,23 +4,43 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
+import android.widget.ArrayAdapter
+import androidx.appcompat.widget.AppCompatImageView
 import com.nexters.towhom.R
 
-class TabInGridAdapter(val context: Context, private val list: List<String>) :
-    BaseAdapter() {
-    var inf: LayoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
+class TabInGridAdapter(context: Context, private val list: List<String>) :
+    ArrayAdapter<TabInGridAdapter.ViewHolder1>(context, R.layout.item_tab_in_grid) {
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        var v = inf.inflate(R.layout.item_tab_in_grid, null)
-//        foodView.imgFood.setImageResource(food.image!!)
-//        foodView.tvName.text = food.name!!
-        return v
+
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
+        var view = convertView
+
+        val holder: ViewHolder1
+        if (view == null) {
+            view = LayoutInflater.from(context).inflate(R.layout.item_tab_in_grid, null)
+            holder = ViewHolder1().apply {
+                iv = view.findViewById(R.id.tab_item_iv)
+            }
+            view.tag = holder
+        } else {
+            holder = view.tag as ViewHolder1
+        }
+
+        holder.iv!!.apply {
+            setImageResource(R.drawable.kakao_default_profile_image)
+            background = holder.rCornerEffect
+            clipToOutline = true
+        }
+
+        return view!!
+
     }
 
-    override fun getItem(p0: Int): Any = list[p0]
-
-    override fun getItemId(p0: Int): Long = p0 as Long
-
     override fun getCount(): Int = list.size
+
+
+    inner class ViewHolder1 {
+        var iv: AppCompatImageView? = null
+        val rCornerEffect = context.getDrawable(R.drawable.rounding_corner)
+    }
 }
