@@ -1,11 +1,10 @@
 package com.nexters.towhom.ui.write
 
-import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,17 +15,18 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.nexters.towhom.MainActivity
 import com.nexters.towhom.R
+import java.io.FileNotFoundException
+import java.io.InputStream
 
 
 class ContentAdapter(private var items: MutableList<String>) :
     RecyclerView.Adapter<ContentAdapter.ContentViewHolder>() {
-
+    lateinit var holder: ContentViewHolder
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ContentViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.fragment_write_content, parent, false)
-        return ContentViewHolder(view)
-
-
+        holder = ContentViewHolder(view)
+        return holder
     }
 
     override fun getItemCount(): Int = items.size
@@ -39,15 +39,24 @@ class ContentAdapter(private var items: MutableList<String>) :
         this.items = items
     }
 
+    fun uriSendToHolder(param : Uri) {
+
+        holder.setGalleryView(param)
+    }
 
 
     inner class ContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private lateinit var letterEdit: EditText
-        private lateinit var galleryImage : ConstraintLayout
+        private var letterEdit: EditText
+        private var galleryImage : ConstraintLayout
+        private var image : ImageView
+
         private val GALLERY = 10
+
         init {
-            letterEdit=itemView.findViewById<EditText>( R.id.letter_text)
+            letterEdit=itemView.findViewById( R.id.letter_text)
             galleryImage = itemView.findViewById(R.id.gallery_image)
+            image = itemView.findViewById(R.id.tmp_image_icon)
+
 
             /** edittext 줄 수 제한 **/
             letterEdit.addTextChangedListener(object:TextWatcher{
@@ -69,29 +78,18 @@ class ContentAdapter(private var items: MutableList<String>) :
 
             })
 
+
+            /**갤러리 이미지 추가 **/
             galleryImage.setOnClickListener{
                 val intent = Intent(Intent.ACTION_PICK)
                 intent.type="image/*"
-                Log.d("asdf","ok1")
                 (itemView.context as MainActivity).startActivityForResult(intent, GALLERY)
-                Log.d("asdf", GALLERY.toString())
             }
-/**
-             override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-                if(requestCode == GALLERY && resultCode == RESULT_OK ){
-                    val selectedImageUri: Uri ? = data?.data
-                    Log.d("asdf","ok3")
-                    galleryImage.setImageURI(selectedImageUri)
-
-                }
-            }
-             **/
 
         }
-
-
-
-
+        fun setGalleryView(param:Uri){
+            image.setImageURI(param)
+        }
 
     }
 
