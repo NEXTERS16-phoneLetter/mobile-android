@@ -1,7 +1,7 @@
 package com.nexters.towhom.ui.write
 
 import android.content.Intent
-import android.graphics.drawable.Drawable
+import android.graphics.Bitmap
 import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,12 +11,10 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.nexters.towhom.MainActivity
 import com.nexters.towhom.R
-import java.io.FileNotFoundException
-import java.io.InputStream
+import java.io.File
 
 
 class ContentAdapter(private var items: MutableList<String>) :
@@ -40,22 +38,24 @@ class ContentAdapter(private var items: MutableList<String>) :
     }
 
     fun uriSendToHolder(param : Uri) {
-
         holder.setGalleryView(param)
+    }
+    fun cropUriSendToHolder(param : Bitmap) {
+        holder.setGalleryCropView(param)
     }
 
 
     inner class ContentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private var letterEdit: EditText
-        private var galleryImage : ConstraintLayout
+        //private var galleryImage : ConstraintLayout
         private var image : ImageView
-
         private val GALLERY = 10
+        private val CROP_IMGAE = 15
 
         init {
             letterEdit=itemView.findViewById( R.id.letter_text)
-            galleryImage = itemView.findViewById(R.id.gallery_image)
-            image = itemView.findViewById(R.id.tmp_image_icon)
+            //galleryImage = itemView.findViewById(R.id.gallery_image)
+            image = itemView.findViewById(R.id.gallery_image)
 
 
             /** edittext 줄 수 제한 **/
@@ -80,7 +80,7 @@ class ContentAdapter(private var items: MutableList<String>) :
 
 
             /**갤러리 이미지 추가 **/
-            galleryImage.setOnClickListener{
+            image.setOnClickListener{
                 val intent = Intent(Intent.ACTION_PICK)
                 intent.type="image/*"
                 (itemView.context as MainActivity).startActivityForResult(intent, GALLERY)
@@ -88,7 +88,33 @@ class ContentAdapter(private var items: MutableList<String>) :
 
         }
         fun setGalleryView(param:Uri){
-            image.setImageURI(param)
+            var intent :Intent = getCropImageFile(param)
+            (itemView.context as MainActivity).startActivityForResult(intent, CROP_IMGAE)
+        }
+        fun setGalleryCropView(param:Bitmap){
+            image.setImageBitmap(param)
+        }
+
+        private fun cropImage(param: Uri) {
+
+        }
+
+        private fun getCropImageFile(imageUri : Uri): Intent {
+            val intent = Intent("com.android.camera.action.CROP")
+            intent.setFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+
+            intent.setDataAndType(imageUri, "image/*")
+            intent.putExtra("aspectX", 4)
+            intent.putExtra("aspectY", 3)
+            intent.putExtra("outputX", 400)
+            intent.putExtra("outputY", 270)
+            intent.putExtra("scale", true)
+
+            //intent.putExtra(MediaStore.EXTRA_OUTPUT, outputUri)
+            intent.putExtra("return-data", true)
+
+            return intent
         }
 
     }

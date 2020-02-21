@@ -2,6 +2,7 @@ package com.nexters.towhom.ui.write
 
 import android.annotation.SuppressLint
 import android.app.ActionBar
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -51,6 +52,9 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
 
     fun GalleryPaste(param: Uri){
         (viewPager.adapter as ContentAdapter).uriSendToHolder(param)
+    }
+    fun GalleryCropPaste(param: Bitmap){
+        (viewPager.adapter as ContentAdapter).cropUriSendToHolder(param)
     }
 
     private val bottomNaviStatus: MutableList<Boolean> by lazy {
