@@ -9,6 +9,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.nexters.towhom.R
+import com.nexters.towhom.ui.write.WriteFragment
 
 class WriteBarView : RelativeLayout {
     private lateinit var view: View
@@ -46,6 +47,7 @@ class WriteBarView : RelativeLayout {
         btn_back.setOnClickListener {
 //            onBackPressed();
             // 뒤로가기
+
         }
 
         val btn_success = view.findViewById<ConstraintLayout>(R.id.btn_write_success)

@@ -225,6 +225,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     }
 
 
+
     override fun bindingObserver() {
     }
 
