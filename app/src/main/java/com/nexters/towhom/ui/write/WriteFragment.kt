@@ -3,6 +3,7 @@ package com.nexters.towhom.ui.write
 import android.annotation.SuppressLint
 import android.app.ActionBar
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -48,6 +49,10 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
         )
     }
 
+    fun GalleryPaste(param: Uri){
+        (viewPager.adapter as ContentAdapter).uriSendToHolder(param)
+    }
+
     private val bottomNaviStatus: MutableList<Boolean> by lazy {
         mutableListOf(
             false,
@@ -81,6 +86,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
         (activity as MainActivity).setOnKeyBackPressedListener(this) //backPressed 처리
 
         viewPager.adapter = ContentAdapter(testList)
+
         indicator.createDotPanel(
             testList.size,
             R.drawable.indicator_dot_off,

@@ -1,22 +1,26 @@
 package com.nexters.towhom
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowManager
 import androidx.core.content.ContextCompat
 import com.nexters.towhom.core.BindingActivity
 import com.nexters.towhom.databinding.ActivityMainBinding
+import com.nexters.towhom.ui.write.WriteFragment
+
+
 
 class MainActivity : BindingActivity<ActivityMainBinding>() {
     override fun getLayoutResId(): Int = R.layout.activity_main
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         binding.lifecycleOwner = this
     }
-
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
@@ -30,5 +34,18 @@ class MainActivity : BindingActivity<ActivityMainBinding>() {
             window.statusBarColor = ContextCompat.getColor(this@MainActivity, R.color.white)
         }
     }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(requestCode == 10 && resultCode == RESULT_OK && data?.data != null ){
+            val selectedImageUri: Uri? = data?.data
+            val fragmentManager = supportFragmentManager.findFragmentById(R.id.login_nav_host_fragment)
+            val getFirstStackFragment = fragmentManager!!.childFragmentManager.fragments[0]
+
+            (getFirstStackFragment as WriteFragment).GalleryPaste(selectedImageUri!!)
+
+        }
+    }
+
 
 }

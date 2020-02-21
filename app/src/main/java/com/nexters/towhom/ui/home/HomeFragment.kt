@@ -3,6 +3,7 @@ package com.nexters.towhom.ui.home
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
@@ -56,7 +57,8 @@ class HomeFragment : BindingFragment<FragmentHomeBinding>(), BindingActivity.OnB
         var defaultPosition = 0F
 
         letterImage.setOnTouchListener { v, event ->
-            defaultPosition = event.rawX
+            defaultPosition = v.width / 1.25f
+            Log.d("asdf",event.rawX.toString())
 
             when (event.action) {
 

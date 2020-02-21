@@ -3,11 +3,12 @@ package com.nexters.towhom.util
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nexters.towhom.R
 
-class BottomNavAdapter(private val list: Array<String>) :
+class BottomNavAdapter(private val list: Array<String>, private val tabName: String) :
     RecyclerView.Adapter<BottomNavAdapter.ViewHolder>() {
 
 
@@ -30,11 +31,32 @@ class BottomNavAdapter(private val list: Array<String>) :
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val testTextView by lazy { itemView.findViewById<AppCompatTextView>(R.id.item_view_1) }
+        val grid by lazy { itemView.findViewById<GridView>(R.id.content_grid_view) }
+
 
         fun bind(position: Int) {
-            testTextView.text = list[position]
+            when (tabName) {
+                "letter" -> {
+
+                }
+                "text" -> {
+
+                }
+                "sticker" -> {
+
+                }
+            }
+            val testList = arrayListOf<String>("aa","bb","aa","bb","aa","bb","aa","bb","aa","bb","aa","bb","aa","bb","aa","bb")
+
+
+
+            grid.adapter = TabInGridAdapter(itemView.context, testList)
+
         }
+    }
+
+    inner class FontViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
     }
 
 }
