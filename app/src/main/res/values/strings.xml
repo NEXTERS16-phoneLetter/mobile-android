@@ -46,4 +46,5 @@
 
     <string name="str_successful">완료</string>
     <string name="str_input_image">사진을 넣어주세요.</string>
+    <string name="str_preview">미리보기</string>
 </resources>

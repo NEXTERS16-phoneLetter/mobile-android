@@ -5,18 +5,15 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
-import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.nexters.towhom.R
 import com.nexters.towhom.ui.write.WriteFragment
 
-class WriteBarView : RelativeLayout {
+class CloseBarView : RelativeLayout {
     private lateinit var view: View
 
     private val tabs by lazy { view.findViewById<TabLayout>(R.id.tab) }
@@ -40,30 +37,16 @@ class WriteBarView : RelativeLayout {
 
     private fun initView(context: Context) {
         val infService = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        view = infService.inflate(R.layout.view_write_bar, this)
+        view = infService.inflate(R.layout.view_close, this)
 
-        /*  val text = view.findViewById<LinearLayout>(R.id.top_linear)
-          text.setOnClickListener {
-              Toast.makeText(context, "Click!", Toast.LENGTH_SHORT).show()
-          }
-        */
-
-
-        val btn_back = view.findViewById<AppCompatImageButton>(R.id.btn_write_back)
-        btn_back.setOnClickListener {
+        val btn_tab_close_only = view.findViewById<AppCompatImageButton>(R.id.btn_tab_close_only)
+        btn_tab_close_only.setOnClickListener {
 //            onBackPressed();
-            // 뒤로가기
-            Toast.makeText(context, "hi", Toast.LENGTH_SHORT).show();
+            // 종료하기
 
 
         }
 
-
-
-        val btn_success = view.findViewById<AppCompatButton>(R.id.btn_write_success)
-        btn_success.setOnClickListener{
-            // 편지쓰기 완료
-       }
     }
 
 
