@@ -55,4 +55,8 @@ class BottomNavAdapter(private val list: Array<String>, private val tabName: Str
         }
     }
 
+    inner class FontViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    }
+
 }

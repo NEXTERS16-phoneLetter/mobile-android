@@ -18,4 +18,11 @@
     <color name="very_light_pink">#d8d8d8</color>
     <color name="coral">#ff4545</color>
     <color name="login_btn">#ff5555</color>
+
+    <color name="brown_grey">#9d9d9d</color>
+    <color name="black_two">#333333</color>
+    <color name="very_light_pink_two">#f2f2f2</color>
+    <color name="mango">#fbb034</color>
+    <color name="bluish_green">#13b24f</color>
+    <color name="warm_blue">#4f51cf</color>
 </resources>
