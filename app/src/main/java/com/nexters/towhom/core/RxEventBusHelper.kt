@@ -10,6 +10,7 @@ object RxEventBusHelper {
     val themeSubject: ArrayList<PublishSubject<Int>> = arrayListOf(PublishSubject.create<Int>())
     val fontSubject: ArrayList<PublishSubject<FontVO>> = arrayListOf(PublishSubject.create<FontVO>())
     val fontColorSubject: ArrayList<PublishSubject<Int>> = arrayListOf(PublishSubject.create<Int>())
+    val stickerSubject: ArrayList<PublishSubject<Int>> = arrayListOf(PublishSubject.create<Int>())
 
     fun sendThemeEvent(themeResource: Int) {
         themeSubject[focus].onNext(themeResource)
@@ -23,16 +24,22 @@ object RxEventBusHelper {
         fontColorSubject[focus].onNext(fontColorResource)
     }
 
+    fun sendStickerEvent(stickerResource: Int) {
+        stickerSubject[focus].onNext(stickerResource)
+    }
+
     fun addSubject() {
         themeSubject.add(PublishSubject.create<Int>())
         fontSubject.add(PublishSubject.create())
         fontColorSubject.add(PublishSubject.create())
+        stickerSubject.add(PublishSubject.create())
     }
 
     fun removeSubject() {
         themeSubject.removeAt(count - 1)
         fontSubject.removeAt(count - 1)
         fontColorSubject.removeAt(count -1)
+        stickerSubject.removeAt(count -1)
     }
 
 }

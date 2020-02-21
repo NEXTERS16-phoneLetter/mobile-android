@@ -51,7 +51,7 @@ class TabInFontGridAdapter(
             val tFace = ResourcesCompat.getFont(context, fontProperty.fontResource)
 
             holder.tv!!.apply {
-                textSize = fontProperty.fontSize.toFloat()
+                textSize = "16".toFloat()
                 typeface = tFace
                 text = fontProperty.fontName
                 setOnClickListener {

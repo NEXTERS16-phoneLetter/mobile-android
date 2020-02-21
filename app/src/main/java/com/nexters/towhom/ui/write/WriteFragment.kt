@@ -2,16 +2,26 @@ package com.nexters.towhom.ui.write
 
 import android.annotation.SuppressLint
 import android.app.ActionBar
+import android.content.Intent
+import android.content.Intent.ACTION_MEDIA_SCANNER_SCAN_FILE
 import android.graphics.Bitmap
 import android.graphics.Color
+import android.graphics.Path
+import android.icu.text.SimpleDateFormat
+import android.media.MediaScannerConnection
 import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
+import androidx.core.os.EnvironmentCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.nexters.towhom.MainActivity
 import com.nexters.towhom.R
@@ -21,6 +31,8 @@ import com.nexters.towhom.core.RxEventBusHelper
 import com.nexters.towhom.databinding.FragmentWriteBinding
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import java.io.FileOutputStream
+import java.util.*
 
 class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     BindingActivity.OnBackPressedListener {
@@ -30,8 +42,6 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     private val indicator by lazy { binding.contentIndicator }
     /**sticker_default**/
     /**sticker_add**/
-    private val mstickerLinear by lazy { binding.stickerLinear }
-    private val add_sticker_btn by lazy { binding.stickerBtn }
 
     private val letterBtn by lazy { binding.letterBtn }
     private val textBtn by lazy { binding.textBtn }
@@ -39,6 +49,18 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     private val addBtn by lazy { binding.addBtn }
     private val deleteBtn by lazy { binding.deleteBtn }
     private val bottomNavi by lazy { binding.bottomNavi }
+
+    lateinit var tb_backBtn: AppCompatImageButton
+    lateinit var tb_successBtn: AppCompatButton
+    private val captureLayout: LinearLayout by lazy { binding.captureLayout }
+
+
+    private val titleBar by lazy {
+        binding.titleBar.apply {
+            tb_backBtn = this.findViewById<AppCompatImageButton>(R.id.btn_write_back)
+            tb_successBtn = this.findViewById<AppCompatButton>(R.id.btn_write_success)
+        }
+    }
 
 
     private val bottomBarButtonList: List<AppCompatImageButton> by lazy {
@@ -51,10 +73,11 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
         )
     }
 
-    fun GalleryPaste(param: Uri){
+    fun GalleryPaste(param: Uri) {
         (viewPager.adapter as ContentAdapter).uriSendToHolder(param)
     }
-    fun GalleryCropPaste(param: Bitmap){
+
+    fun GalleryCropPaste(param: Bitmap) {
         (viewPager.adapter as ContentAdapter).cropUriSendToHolder(param)
     }
 
@@ -69,8 +92,6 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     }
 
 
-
-
     /** Test Button */
 //    private val testBt by lazy { binding.testBtn }
 
@@ -80,7 +101,6 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     var testList = mutableListOf<String>("list1")
 
     private var ACTIVATE_PAGE_NUM = 0
-
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -128,23 +148,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
               indicator.createDotPanel(testList.size, R.drawable.indicator_dot_off, R.drawable.indicator_dot_on, ACTIVATE_PAGE_NUM)
           }*/
 
-        add_sticker_btn.setOnClickListener {
-            val stickerImage =
-                LayoutInflater.from(context).inflate(R.layout.sticker, mstickerLinear, false)
 
-
-            mstickerLinear.addView(stickerImage)
-        }
-        mstickerLinear.setOnTouchListener((View.OnTouchListener { view, motionEvent ->
-
-            if (motionEvent.action == MotionEvent.ACTION_MOVE) {
-
-                view.y = motionEvent.rawY - view.height / 2
-                view.x = motionEvent.rawX - view.width / 2
-            }
-            true
-
-        }))
 
 
 
@@ -240,8 +244,51 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
             true
         }
 
+
+        titleBar // 지우지마세요
+
+        tb_backBtn.setOnClickListener {
+            onBackPressed()
+        }
+        tb_successBtn.setOnClickListener {
+            requestCapture()
+        }
+
     }
 
+    private fun requestCapture() {
+        val sdf = SimpleDateFormat("yyyyMMddHHmmss")
+        val time = Date()
+        val currentTime = sdf.format(time) + "_capture"
+
+        captureLayout.buildDrawingCache()
+        val bitmap = captureLayout.drawingCache
+        lateinit var fos: FileOutputStream
+
+        val uploadFolder = Environment.getExternalStoragePublicDirectory("/DCIM/Camera/")
+
+        if (!uploadFolder.exists()) { //만약 경로에 폴더가 없다면
+            uploadFolder.mkdir() //폴더 생성
+        }
+
+        val strPath = Environment.getExternalStorageDirectory().absolutePath + "/DCIM/Camera/"
+
+        try {
+            fos = FileOutputStream(strPath + currentTime + ".jpg")
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos)
+            context!!.sendBroadcast(Intent(ACTION_MEDIA_SCANNER_SCAN_FILE),
+                Uri.parse((strPath+ currentTime+ ".jpg")).toString()
+            )
+            Toast.makeText(context, "저장완료", Toast.LENGTH_SHORT).show()
+            fos.flush()
+            fos.close()
+            captureLayout.destroyDrawingCache();
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+
+    }
 
 
     override fun bindingObserver() {

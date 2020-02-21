@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatImageView
 import com.nexters.towhom.R
+import com.nexters.towhom.core.RxEventBusHelper
 import com.nexters.towhom.vo.StickerVO
 
 class TabInGridAdapter(context: Context, private val list: ArrayList<StickerVO>) :
@@ -31,6 +32,10 @@ class TabInGridAdapter(context: Context, private val list: ArrayList<StickerVO>)
             setImageResource(list[position].resource)
             background = holder.rCornerEffect
             clipToOutline = true
+
+            setOnClickListener {
+                RxEventBusHelper.sendStickerEvent(list[position].resource)
+            }
         }
 
         return view!!
