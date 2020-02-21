@@ -5,15 +5,19 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.nexters.towhom.MainActivity
 import com.nexters.towhom.R
+import com.nexters.towhom.core.RxEventBusHelper
+import kotlinx.android.synthetic.main.fragment_write_content.view.*
 import java.io.File
 
 
@@ -30,7 +34,7 @@ class ContentAdapter(private var items: MutableList<String>) :
     override fun getItemCount(): Int = items.size
 
     override fun onBindViewHolder(holder: ContentViewHolder, position: Int) {
-
+        holder.bind(position)
     }
 
     fun setUpdateItems(items: MutableList<String>) {
@@ -87,6 +91,29 @@ class ContentAdapter(private var items: MutableList<String>) :
             }
 
         }
+
+        fun bind(position: Int) {
+            RxEventBusHelper.themeSubject[position].subscribe {
+                Log.e("Event_Bus_Call!",it.toString()+" :" + position)
+                itemView.theme_iv.setImageResource(it)
+            }
+
+            RxEventBusHelper.fontSubject[position].subscribe {
+                Log.e("Event_Bus_Call!", it.toString() + " : " + position)
+                letterEdit.typeface = ResourcesCompat.getFont(itemView.context, it.fontResource)
+                letterEdit.textSize = it.fontSize.toFloat()
+            }
+
+
+            RxEventBusHelper.fontColorSubject[position].subscribe {
+                Log.e("Event_Bus_Call!", it.toString() + " : " + position)
+                letterEdit.setTextColor(itemView.context.getColor(it))
+                letterEdit.setHintTextColor(itemView.context.getColor(it))
+            }
+
+
+        }
+
         fun setGalleryView(param:Uri){
             var intent :Intent = getCropImageFile(param)
             (itemView.context as MainActivity).startActivityForResult(intent, CROP_IMGAE)

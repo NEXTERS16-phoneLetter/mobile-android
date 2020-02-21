@@ -10,6 +10,7 @@ import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.Resource
 import com.nexters.towhom.R
+import com.nexters.towhom.core.RxEventBusHelper
 import com.nexters.towhom.vo.FontColorVO
 import com.nexters.towhom.vo.FontVO
 import com.nexters.towhom.vo.FontWeightVO
@@ -27,16 +28,6 @@ class TabInFontAdapter(private val list: ArrayList<FontVO>, private val miniCate
         FontWeightVO("굵게", "800")
     )
 
-    val colorList: ArrayList<FontColorVO> = arrayListOf(
-        FontColorVO("검정", R.color.colorBlack, R.drawable.box_rad16_black),
-        FontColorVO("연검정", R.color.brown_grey, R.drawable.box_rad16_brown_grey),
-        FontColorVO("연회", R.color.black_two, R.drawable.box_rad16_black_two),
-        FontColorVO("하양", R.color.white, R.drawable.box_rad16_white),
-        FontColorVO("자몽", R.color.grapefruit, R.drawable.box_rad16_grape_fruit),
-        FontColorVO("망고", R.color.mango, R.drawable.box_rad16_mango),
-        FontColorVO("맑은포도", R.color.warm_blue, R.drawable.box_rad16_warm_blue)
-    )
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
@@ -52,7 +43,7 @@ class TabInFontAdapter(private val list: ArrayList<FontVO>, private val miniCate
         when (miniCategory) {
             0 -> return list.size
             1 -> return 3
-            2 -> return colorList.size
+//            2 -> return colorList.size
         }
 
         return -1
@@ -81,6 +72,7 @@ class TabInFontAdapter(private val list: ArrayList<FontVO>, private val miniCate
                         textSize = fontProperty.fontSize.toFloat()
                         typeface = tFace
                         text = fontProperty.fontName
+
                     }
                 }
                 //굵
@@ -109,30 +101,31 @@ class TabInFontAdapter(private val list: ArrayList<FontVO>, private val miniCate
 
                 //색상
                 2 -> {
-                    tv.apply {
-                        typeface = ResourcesCompat.getFont(
-                            itemView.context,
-                            R.font.nanumgothic_extrabold
-                        )
-                        text = colorList[position].name
-                        background = itemView.context.getDrawable(colorList[position].colorBg)
+                    /*  tv.apply {
+                          typeface = ResourcesCompat.getFont(
+                              itemView.context,
+                              R.font.nanumgothic_extrabold
+                          )
+                          text = colorList[position].name
+                          background = itemView.context.getDrawable(colorList[position].colorBg)
 
-                        if (colorList[position].name == "하양") {
-                            setTextColor(
-                                ContextCompat.getColor(
-                                    itemView.context,
-                                    R.color.colorBlack
-                                )
-                            )
-                        } else {
+                          if (colorList[position].name == "하양") {
+                              setTextColor(
+                                  ContextCompat.getColor(
+                                      itemView.context,
+                                      R.color.colorBlack
+                                  )
+                              )
+                          } else {
 
-                            setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
-                        }
-                    }
-
+                              setTextColor(ContextCompat.getColor(itemView.context, R.color.white))
+                          }
+                      }
+                          */
                 }
 
             }
+
         }
     }
 }

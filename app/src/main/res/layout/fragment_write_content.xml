@@ -10,17 +10,25 @@
     </data>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/fragment_write_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/theme_iv"
+                android:scaleType="centerCrop"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
 
             <EditText
                 android:id="@+id/letter_text"
                 android:layout_width="match_parent"
                 android:layout_height="291dp"
+                android:layout_marginTop="56dp"
                 android:layout_marginStart="@dimen/layout_24"
                 android:layout_marginEnd="@dimen/layout_24"
                 android:background="@null"
@@ -28,7 +36,8 @@
                 android:hint="@string/str_letter_please"
                 android:inputType="textMultiLine"
                 android:maxLength="250"
-                android:textSize="14dp"
+                android:textSize="20dp"
+                android:fontFamily="@font/nanumgothic_regular"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/gallery_image"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -40,39 +49,11 @@
                 android:layout_marginStart="@dimen/layout_24"
                 android:layout_marginTop="@dimen/layout_24"
                 android:layout_marginEnd="@dimen/layout_24"
-                android:layout_marginBottom="@dimen/layout_24"
                 android:background="@drawable/box_rad16_black10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/letter_text">
 
-<!--
-                <ImageView
-                    android:id="@+id/tmp_image_icon"
-                    android:layout_width="@dimen/layout_24"
-                    android:layout_height="@dimen/layout_24"
-                    android:src="@drawable/ic_image"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="3dp"
-                    android:gravity="center_horizontal"
-                    android:text="@string/str_input_image"
-                    android:textColor="#33000000"
-                    android:textSize="16sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tmp_image_icon"
-
-                    />
-
--->
             </ImageView>
-
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>

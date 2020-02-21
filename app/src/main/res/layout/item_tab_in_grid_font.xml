@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/item_font_grid_tv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:minHeight="94dp"
+        android:maxWidth="94dp"
+        android:gravity="center"
+        tools:fontFamily="@font/bmyeonsung"
+        android:background="@drawable/box_rad16_white94"
+        tools:textSize="@dimen/text_16"
+        android:paddingStart="@dimen/layout_16"
+        android:paddingEnd="@dimen/layout_16"
+        android:textColor="@color/colorBlack"
+        tools:text="배민 연성체" />
+</LinearLayout>

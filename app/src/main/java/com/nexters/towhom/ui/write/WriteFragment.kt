@@ -17,6 +17,7 @@ import com.nexters.towhom.MainActivity
 import com.nexters.towhom.R
 import com.nexters.towhom.core.BindingActivity
 import com.nexters.towhom.core.BindingFragment
+import com.nexters.towhom.core.RxEventBusHelper
 import com.nexters.towhom.databinding.FragmentWriteBinding
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
@@ -111,6 +112,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
                 super.onPageSelected(position)
                 ACTIVATE_PAGE_NUM = position
                 indicator.selectDot(position)
+                RxEventBusHelper.focus = position
+
             }
         })
 
@@ -204,6 +207,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
                         (v as AppCompatImageButton).setImageResource(R.drawable.letter_add_default)
                         testList.add("tempList") //TODO : 여기 리스트 내용 변경해야함
                         updateLetterPaperStatus()
+                        RxEventBusHelper.count += 1
+                        RxEventBusHelper.addSubject()
 
                         bottomNaviStatus[3] = false
                     } else {
@@ -222,6 +227,9 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
                         (v as AppCompatImageButton).setImageResource(R.drawable.delete_default)
                         testList.removeAt(testList.size - 1)
                         updateLetterPaperStatus()
+
+                        RxEventBusHelper.count -= 1
+                        RxEventBusHelper.removeSubject()
 
                         bottomNaviStatus[4] = false
                     } else {
@@ -287,6 +295,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     fun showBottomNav(kind: String) {
         bottomNavi.visibility = View.VISIBLE
         bottomNavi.updateView(kind)
+
 
         /* when(kind) {
              "letter" -> {

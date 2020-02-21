@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.appcompat.widget.AppCompatImageView
 import com.nexters.towhom.R
+import com.nexters.towhom.vo.StickerVO
 
-class TabInGridAdapter(context: Context, private val list: List<String>) :
+class TabInGridAdapter(context: Context, private val list: ArrayList<StickerVO>) :
     ArrayAdapter<TabInGridAdapter.ViewHolder1>(context, R.layout.item_tab_in_grid) {
 
 
@@ -27,7 +28,7 @@ class TabInGridAdapter(context: Context, private val list: List<String>) :
         }
 
         holder.iv!!.apply {
-            setImageResource(R.drawable.kakao_default_profile_image)
+            setImageResource(list[position].resource)
             background = holder.rCornerEffect
             clipToOutline = true
         }
@@ -41,6 +42,6 @@ class TabInGridAdapter(context: Context, private val list: List<String>) :
 
     inner class ViewHolder1 {
         var iv: AppCompatImageView? = null
-        val rCornerEffect = context.getDrawable(R.drawable.rounding_corner)
+        val rCornerEffect = context.getDrawable(R.drawable.box_rad16_white94)
     }
 }
