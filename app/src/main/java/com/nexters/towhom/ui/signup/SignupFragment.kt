@@ -20,7 +20,6 @@ class SignupFragment : BindingFragment<FragmentSignupBinding>() {
     private val emailInsert by lazy { binding.emailInsert }
     private val pwInsert by lazy { binding.pwInsert }
 
-//    private val wrongTv by lazy { binding.wrongMsgTv }// 존재여부 잘 모르겠
     private val continueBtn by lazy { binding.continueBtn }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

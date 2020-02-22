@@ -75,7 +75,11 @@
         android:name="com.nexters.towhom.ui.write.WriteFragment"
         android:label="@string/app_name"
         tools:layout="@layout/fragment_write"
-        />
+        >
+        <action
+                android:id="@+id/action_write_to_preview"
+                app:destination="@id/preview" />
+    </fragment>
 
     <fragment
         android:id="@+id/signup_phone"
@@ -83,5 +87,13 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_phone_certification"
     />
+
+
+    <fragment
+            android:id="@+id/preview"
+            android:name="com.nexters.towhom.ui.preview.PreviewFragment"
+            android:label="@string/app_name"
+            tools:layout="@layout/fragment_preview"
+            />
 
 </navigation>

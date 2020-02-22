@@ -3,6 +3,7 @@ package com.nexters.towhom.di
 import com.nexters.towhom.ui.home.HomeViewModel
 import com.nexters.towhom.ui.signin.SigninViewModel
 import com.nexters.towhom.ui.login.LoginHomeViewModel
+import com.nexters.towhom.ui.preview.PreviewViewModel
 import com.nexters.towhom.ui.signup.PhoneCertificationViewModel
 import com.nexters.towhom.ui.signup.SignupViewModel
 import com.nexters.towhom.ui.write.WriteViewModel
@@ -21,5 +22,6 @@ val viewModelModule = module {
     viewModel { WriteViewModel() }
     viewModel { SignupViewModel() }
     viewModel { PhoneCertificationViewModel() }
+    viewModel { PreviewViewModel() }
     // viewModel { MainViewModel() }
 }

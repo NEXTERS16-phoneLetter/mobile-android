@@ -11,12 +11,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.nexters.towhom.MainActivity
 import com.nexters.towhom.R
 import com.nexters.towhom.core.BindingActivity
 import com.nexters.towhom.core.BindingFragment
 import com.nexters.towhom.databinding.FragmentWriteBinding
+import kotlinx.android.synthetic.main.view_write_bar.*
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 
@@ -37,6 +39,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     private val addBtn by lazy { binding.addBtn }
     private val deleteBtn by lazy { binding.deleteBtn }
     private val bottomNavi by lazy { binding.bottomNavi }
+
+//    private val writeSuccessBtn by lazy { R.id.btn_write_success}
 
 
     private val bottomBarButtonList: List<AppCompatImageButton> by lazy {
@@ -228,11 +232,17 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
             true
         }
 
+        btn_write_success.setOnClickListener {
+            findNavController().navigate(R.id.action_write_to_preview)
+        }
+
     }
 
 
 
     override fun bindingObserver() {
+
+
     }
 
 
