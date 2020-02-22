@@ -35,6 +35,7 @@ import com.nexters.towhom.databinding.FragmentWriteBinding
 import kotlinx.android.synthetic.main.view_write_bar.*
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import java.io.File
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
@@ -264,12 +265,16 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
 
     }
 
+
+
     private fun requestCapture() {
         val sdf = SimpleDateFormat("yyyyMMddHHmmss")
         val time = Date()
         val currentTime = sdf.format(time) + "_capture"
 
         captureLayout.buildDrawingCache()
+        captureLayout.isDrawingCacheEnabled = true
+
         val bitmap = captureLayout.drawingCache
         lateinit var fos: FileOutputStream
 
