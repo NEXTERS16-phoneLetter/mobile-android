@@ -19,9 +19,6 @@ import com.nexters.towhom.ui.write.WriteFragment
 class WriteBarView : RelativeLayout {
     private lateinit var view: View
 
-    private val tabs by lazy { view.findViewById<TabLayout>(R.id.tab) }
-    private val vp by lazy { view.findViewById<ViewPager2>(R.id.content_vp) }
-
     constructor(context: Context) : super(context) {
         initView(context)
     }
@@ -42,28 +39,6 @@ class WriteBarView : RelativeLayout {
         val infService = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         view = infService.inflate(R.layout.view_write_bar, this)
 
-        /*  val text = view.findViewById<LinearLayout>(R.id.top_linear)
-          text.setOnClickListener {
-              Toast.makeText(context, "Click!", Toast.LENGTH_SHORT).show()
-          }
-        */
-
-
-        val btn_back = view.findViewById<AppCompatImageButton>(R.id.btn_write_back)
-        btn_back.setOnClickListener {
-//            onBackPressed();
-            // 뒤로가기
-            Toast.makeText(context, "hi", Toast.LENGTH_SHORT).show();
-
-
-        }
-
-
-
-        val btn_success = view.findViewById<AppCompatButton>(R.id.btn_write_success)
-        btn_success.setOnClickListener{
-            // 편지쓰기 완료
-       }
     }
 
 

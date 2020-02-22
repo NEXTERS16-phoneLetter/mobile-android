@@ -3,6 +3,7 @@ package com.nexters.towhom.util
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.GridView
 import androidx.recyclerview.widget.RecyclerView
 import com.nexters.towhom.R
 import com.nexters.towhom.vo.FontVO
@@ -34,12 +35,37 @@ class BottomFontAdapter(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val recycler by lazy { itemView.findViewById<RecyclerView>(R.id.content_recycler_view) }
-
+        val gridView by lazy { itemView.findViewById<GridView>(R.id.content_font_grid_view) }
 
         fun bind(position: Int) {
-            recycler.adapter = TabInFontAdapter(childList, position)
+            when (position) {
+                0 -> {
+                    gridView.adapter = TabInFontGridAdapter(itemView.context, childList, "fontVO")
+
+                    showGridHideRecyeler()
+                }
+
+                1 -> {
+                    recycler.adapter = TabInFontAdapter(childList, position)
+
+                    showRecyclerHideGrid()
+                }
+                2 -> {
+                    gridView.adapter =
+                        TabInFontGridAdapter(itemView.context, childList, "fontColorVO")
+                    showGridHideRecyeler()
+                }
+            }
         }
 
+        private fun showGridHideRecyeler() {
+            gridView.visibility = View.VISIBLE
+            recycler.visibility = View.GONE
+        }
+        private fun showRecyclerHideGrid() {
+            gridView.visibility = View.GONE
+            recycler.visibility = View.VISIBLE
+        }
 
     }
 }

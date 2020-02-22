@@ -6,7 +6,13 @@
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/tab_item_iv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:maxWidth="94dp"
+        android:minHeight="94dp"
+        android:maxHeight="94dp"
+        android:background="@drawable/box_rad16_white94"
+        android:layout_height="94dp"
+        android:paddingTop="@dimen/layout_16"
+        android:paddingBottom="@dimen/layout_16"
         android:src="@drawable/kakao_default_profile_image"
         />
 

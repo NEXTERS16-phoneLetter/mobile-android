@@ -24,6 +24,13 @@
     <string name="str_phone_placeholder_output">인증번호를 입력해 주세요.</string>
     <string name="str_signup_success">시작하기</string>
 
+    <string name="str_weather">날씨</string>
+    <string name="str_nugu">누구에게</string>
+
+    <string name="str_brush">물감</string>
+    <string name="str_paper">재질</string>
+
+    <string name="str_imoge">이모지</string>
     <string name="str_recommendation">추천</string>
     <string name="str_basic">기본</string>
     <string name="str_material">재질</string>
@@ -48,4 +55,6 @@
     <string name="str_input_image">사진을 넣어주세요.</string>
     <string name="str_preview">미리보기</string>
     <string name="str_send">전송하기</string>
+    <string name="str_send_success">편지가 성공적으로\n보내졌어요 :)</string>
+    <string name="str_go_back_home">홈으로 돌아가기</string>
 </resources>

@@ -18,11 +18,9 @@
     </string-array>
 
     <string-array name="letter_str_arr">
-        <item>@string/str_recommendation</item>
-        <item>@string/str_basic</item>
-        <item>@string/str_material</item>
-        <item>@string/str_event</item>
-        <item>@string/str_pattern</item>
+        <item>@string/str_brush</item>
+        <item>@string/str_paper</item>
+
     </string-array>
 
     <string-array name="text_str_arr">
@@ -32,12 +30,10 @@
     </string-array>
 
     <string-array name="sticker_str_arr">
-        <item>@string/str_recommendation</item>
+        <item>@string/str_weather</item>
         <item>@string/str_love</item>
-        <item>@string/str_freind</item>
-        <item>@string/str_font</item>
-        <item>@string/str_season</item>
-        <item>@string/str_charactor</item>
+        <item>@string/str_nugu</item>
+        <item>@string/str_imoge</item>
     </string-array>
 
 

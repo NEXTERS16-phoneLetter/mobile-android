@@ -9,11 +9,11 @@
         android:id="@+id/item_font_tv"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@drawable/box_rad16_black10"
+        android:background="@drawable/box_rad16_white94"
         android:gravity="center"
         tools:fontFamily="@font/bmyeonsung"
         tools:textSize="@dimen/text_16"
-        android:layout_marginBottom="@dimen/layout_8"
+        android:layout_marginBottom="@dimen/layout_16"
         android:textColor="@color/colorBlack"
-        tools:text="배민 연성체" />
+        tools:text="폰트 굵기" />
 </LinearLayout>

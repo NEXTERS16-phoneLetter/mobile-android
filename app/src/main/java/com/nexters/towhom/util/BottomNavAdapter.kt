@@ -7,8 +7,14 @@ import android.widget.GridView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.recyclerview.widget.RecyclerView
 import com.nexters.towhom.R
+import com.nexters.towhom.vo.StickerThemeVO
+import com.nexters.towhom.vo.StickerVO
 
-class BottomNavAdapter(private val list: Array<String>, private val tabName: String) :
+class BottomNavAdapter(
+    private val parentList: Array<String>,
+    private val childList: ArrayList<StickerThemeVO>,
+    private val tabName: String
+) :
     RecyclerView.Adapter<BottomNavAdapter.ViewHolder>() {
 
 
@@ -23,7 +29,7 @@ class BottomNavAdapter(private val list: Array<String>, private val tabName: Str
         )
     }
 
-    override fun getItemCount(): Int = list.size
+    override fun getItemCount(): Int = parentList.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(position)
@@ -35,22 +41,9 @@ class BottomNavAdapter(private val list: Array<String>, private val tabName: Str
 
 
         fun bind(position: Int) {
-            when (tabName) {
-                "letter" -> {
+            val stickerVOList: ArrayList<StickerVO> = childList[position].list
 
-                }
-                "text" -> {
-
-                }
-                "sticker" -> {
-
-                }
-            }
-            val testList = arrayListOf<String>("aa","bb","aa","bb","aa","bb","aa","bb","aa","bb","aa","bb","aa","bb","aa","bb")
-
-
-
-            grid.adapter = TabInGridAdapter(itemView.context, testList)
+            grid.adapter = TabInGridAdapter(itemView.context, stickerVOList) //ArrayList<StickerVO>
 
         }
     }

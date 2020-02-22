@@ -1,26 +1,43 @@
 package com.nexters.towhom.ui.write
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ActionBar
+import android.content.Intent
+import android.content.Intent.ACTION_MEDIA_SCANNER_SCAN_FILE
+import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.Color
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ImageButton
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import androidx.core.os.EnvironmentCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.nexters.towhom.MainActivity
 import com.nexters.towhom.R
 import com.nexters.towhom.core.BindingActivity
 import com.nexters.towhom.core.BindingFragment
+import com.nexters.towhom.core.RxEventBusHelper
 import com.nexters.towhom.databinding.FragmentWriteBinding
 import kotlinx.android.synthetic.main.view_write_bar.*
 import org.koin.android.ext.android.bind
 import org.koin.androidx.viewmodel.ext.android.getViewModel
+import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.*
 
 class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     BindingActivity.OnBackPressedListener {
@@ -30,8 +47,6 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     private val indicator by lazy { binding.contentIndicator }
     /**sticker_default**/
     /**sticker_add**/
-    private val mstickerLinear by lazy { binding.stickerLinear }
-    private val add_sticker_btn by lazy { binding.stickerBtn }
 
     private val letterBtn by lazy { binding.letterBtn }
     private val textBtn by lazy { binding.textBtn }
@@ -40,7 +55,17 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     private val deleteBtn by lazy { binding.deleteBtn }
     private val bottomNavi by lazy { binding.bottomNavi }
 
-//    private val writeSuccessBtn by lazy { R.id.btn_write_success}
+    lateinit var tb_backBtn: AppCompatImageButton
+    lateinit var tb_successBtn: AppCompatButton
+    private val captureLayout: LinearLayout by lazy { binding.captureLayout }
+
+
+    private val titleBar by lazy {
+        binding.titleBar.apply {
+            tb_backBtn = this.findViewById<AppCompatImageButton>(R.id.btn_write_back)
+            tb_successBtn = this.findViewById<AppCompatButton>(R.id.btn_write_success)
+        }
+    }
 
 
     private val bottomBarButtonList: List<AppCompatImageButton> by lazy {
@@ -53,8 +78,12 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
         )
     }
 
-    fun GalleryPaste(param: Uri){
+    fun GalleryPaste(param: Uri) {
         (viewPager.adapter as ContentAdapter).uriSendToHolder(param)
+    }
+
+    fun GalleryCropPaste(param: Bitmap) {
+        (viewPager.adapter as ContentAdapter).cropUriSendToHolder(param)
     }
 
     private val bottomNaviStatus: MutableList<Boolean> by lazy {
@@ -111,6 +140,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
                 super.onPageSelected(position)
                 ACTIVATE_PAGE_NUM = position
                 indicator.selectDot(position)
+                RxEventBusHelper.focus = position
+
             }
         })
 
@@ -125,23 +156,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
               indicator.createDotPanel(testList.size, R.drawable.indicator_dot_off, R.drawable.indicator_dot_on, ACTIVATE_PAGE_NUM)
           }*/
 
-        add_sticker_btn.setOnClickListener {
-            val stickerImage =
-                LayoutInflater.from(context).inflate(R.layout.sticker, mstickerLinear, false)
 
-
-            mstickerLinear.addView(stickerImage)
-        }
-        mstickerLinear.setOnTouchListener((View.OnTouchListener { view, motionEvent ->
-
-            if (motionEvent.action == MotionEvent.ACTION_MOVE) {
-
-                view.y = motionEvent.rawY - view.height / 2
-                view.x = motionEvent.rawX - view.width / 2
-            }
-            true
-
-        }))
 
 
 
@@ -204,6 +219,8 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
                         (v as AppCompatImageButton).setImageResource(R.drawable.letter_add_default)
                         testList.add("tempList") //TODO : 여기 리스트 내용 변경해야함
                         updateLetterPaperStatus()
+                        RxEventBusHelper.count += 1
+                        RxEventBusHelper.addSubject()
 
                         bottomNaviStatus[3] = false
                     } else {
@@ -223,6 +240,9 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
                         testList.removeAt(testList.size - 1)
                         updateLetterPaperStatus()
 
+                        RxEventBusHelper.count -= 1
+                        RxEventBusHelper.removeSubject()
+
                         bottomNaviStatus[4] = false
                     } else {
                         Toast.makeText(context, "편지지가 1장밖에 안남았어요 :=)", Toast.LENGTH_SHORT).show()
@@ -232,17 +252,92 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
             true
         }
 
-        btn_write_success.setOnClickListener {
+        titleBar // 지우지마세요
+
+        tb_backBtn.setOnClickListener {
+            onBackPressed()
+        }
+        tb_successBtn.setOnClickListener {
+            requestCapture()
             findNavController().navigate(R.id.action_write_to_preview)
         }
 
     }
 
+    private fun requestCapture() {
+        val sdf = SimpleDateFormat("yyyyMMddHHmmss")
+        val time = Date()
+        val currentTime = sdf.format(time) + "_capture"
+
+        captureLayout.buildDrawingCache()
+        val bitmap = captureLayout.drawingCache
+        lateinit var fos: FileOutputStream
+
+        val uploadFolder = Environment.getExternalStoragePublicDirectory("/DCIM/Camera/")
+
+        if (!uploadFolder.exists()) { //만약 경로에 폴더가 없다면
+            uploadFolder.mkdir() //폴더 생성
+        }
+
+        val strPath = Environment.getExternalStorageDirectory().absolutePath + "/DCIM/Camera/"
+
+        try {
+            if (ContextCompat.checkSelfPermission(
+                    context!!,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+
+
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(
+                    context as MainActivity,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1
+                )
+
+                // WRITE_EXTERNAL_STORAGE is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+
+                return
+            }
+
+
+            fos = FileOutputStream(strPath + currentTime + ".jpg")
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos)
+            context!!.sendBroadcast(
+                Intent(ACTION_MEDIA_SCANNER_SCAN_FILE),
+                Uri.parse((strPath + currentTime + ".jpg")).toString()
+            )
+            Toast.makeText(context, "저장완료", Toast.LENGTH_SHORT).show()
+            fos.flush()
+            fos.close()
+            captureLayout.destroyDrawingCache()
+
+
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.v("Perminssion_test", "Permission: " + permissions[0] + "was " + grantResults[0]);
+                //resume tasks needing this permission
+            }
+        }
+    }
 
 
     override fun bindingObserver() {
-
-
     }
 
 
@@ -293,6 +388,7 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
     fun showBottomNav(kind: String) {
         bottomNavi.visibility = View.VISIBLE
         bottomNavi.updateView(kind)
+
 
         /* when(kind) {
              "letter" -> {
