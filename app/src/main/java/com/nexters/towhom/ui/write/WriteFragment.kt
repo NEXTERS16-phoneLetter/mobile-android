@@ -1,17 +1,21 @@
 package com.nexters.towhom.ui.write
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.ActionBar
 import android.content.Intent
 import android.content.Intent.ACTION_MEDIA_SCANNER_SCAN_FILE
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.Path
 import android.icu.text.SimpleDateFormat
 import android.media.MediaScannerConnection
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
@@ -20,6 +24,7 @@ import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatImageButton
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.EnvironmentCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -274,20 +279,58 @@ class WriteFragment : BindingFragment<FragmentWriteBinding>(),
         val strPath = Environment.getExternalStorageDirectory().absolutePath + "/DCIM/Camera/"
 
         try {
+            if (ContextCompat.checkSelfPermission(
+                    context!!,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+
+
+                // No explanation needed, we can request the permission.
+                ActivityCompat.requestPermissions(
+                    context as MainActivity,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 1
+                )
+
+                // WRITE_EXTERNAL_STORAGE is an
+                // app-defined int constant. The callback method gets the
+                // result of the request.
+
+                return
+            }
+
+
             fos = FileOutputStream(strPath + currentTime + ".jpg")
             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, fos)
-            context!!.sendBroadcast(Intent(ACTION_MEDIA_SCANNER_SCAN_FILE),
-                Uri.parse((strPath+ currentTime+ ".jpg")).toString()
+            context!!.sendBroadcast(
+                Intent(ACTION_MEDIA_SCANNER_SCAN_FILE),
+                Uri.parse((strPath + currentTime + ".jpg")).toString()
             )
             Toast.makeText(context, "저장완료", Toast.LENGTH_SHORT).show()
             fos.flush()
             fos.close()
-            captureLayout.destroyDrawingCache();
+            captureLayout.destroyDrawingCache()
+
+
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
 
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (Build.VERSION.SDK_INT >= 23) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Log.v("Perminssion_test", "Permission: " + permissions[0] + "was " + grantResults[0]);
+                //resume tasks needing this permission
+            }
+        }
     }
 
 
